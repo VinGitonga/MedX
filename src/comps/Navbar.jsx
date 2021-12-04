@@ -34,6 +34,7 @@ import { Fragment } from 'react'
 export default function Navbar() {
     const bg = useColorModeValue("white", "gray.800");
     const mobileNav = useDisclosure();
+    
 
     return (
         <Fragment>
