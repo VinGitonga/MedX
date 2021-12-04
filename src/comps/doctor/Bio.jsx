@@ -8,7 +8,7 @@ const Bio = () => {
                 <Avatar
                     size={'2xl'}
                     mr={5}
-                    src="https://firstcrackfantasy.com/wp-content/uploads/1983/10/gordon.png"
+                    src="https://compote.slate.com/images/fbbe6a01-f638-42cc-a119-5f8772893378.jpeg?width=780&height=520&rect=1560x1040&offset=0x0"
                 />
                 <Heading>Dr. Jane Sloan</Heading>
             </Flex>
@@ -32,7 +32,7 @@ const Bio = () => {
                     </Box>
                     <Box mx={2}>
                         <Text color={'gray.400'} fontWeight={600} fontSizee='sm' textTransform={'uppercase'}>Age</Text>
-                        <Text color={'gray.900'} fontSize={'md'}>42</Text>
+                        <Text color={'gray.900'} fontSize={'md'}>30</Text>
                     </Box>
                 </SimpleGrid>
             </Box>

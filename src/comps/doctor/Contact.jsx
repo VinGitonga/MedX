@@ -5,7 +5,7 @@ import { HStack, Heading, Box, Text } from '@chakra-ui/react'
 const Contact = () => {
     return (
         <Card>
-            <Box>
+            <Box mb={4}>
                 <Heading>Contact</Heading>
             </Box>
             <HStack>

@@ -4,7 +4,7 @@ import Card from '../patient/Card';
 const DoctorInfo = () => {
     return (
         <Card>
-            <Box>
+            <Box mb={4}>
                 <Heading>Information</Heading>
             </Box>
             <SimpleGrid columns={2} spacing={5}>
