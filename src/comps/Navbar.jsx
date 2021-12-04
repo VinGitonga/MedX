@@ -30,11 +30,13 @@ import { BsChatFill } from "react-icons/bs";
 import { MdStorm } from 'react-icons/md'
 import { RiStethoscopeFill, RiUserHeartFill, RiLogoutCircleFill } from 'react-icons/ri'
 import { Fragment } from 'react'
+import { useHistory } from 'react-router-dom'
 
 export default function Navbar() {
     const bg = useColorModeValue("white", "gray.800");
     const mobileNav = useDisclosure();
-    
+    const history = useHistory()
+
 
     return (
         <Fragment>
@@ -91,6 +93,7 @@ export default function Navbar() {
                                     w="full"
                                     variant="ghost"
                                     leftIcon={<RiStethoscopeFill />}
+                                    onClick={() => history.push('/doctors')}
                                 >
                                     Doctors
                                 </Button>
@@ -98,7 +101,7 @@ export default function Navbar() {
                         </Box>
                         <chakra.a
                             href="/"
-                            title="Choc Home Page"
+                            title="MedX"
                             display="flex"
                             alignItems="center"
                         >
@@ -120,6 +123,7 @@ export default function Navbar() {
                             <Button
                                 variant="ghost"
                                 leftIcon={<RiStethoscopeFill />}
+                                onClick={() => history.push('/doctors')}
                                 size="sm"
                             >
                                 Doctors

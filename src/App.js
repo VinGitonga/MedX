@@ -6,6 +6,7 @@ import Landing from './screens/Landing';
 import PatientProfile from './screens/PatientProfile';
 import Patients from './screens/Patients';
 import DoctorProfile from './screens/DoctorProfile';
+import Doctors from './screens/Doctors';
 
 
 function App() {
@@ -18,6 +19,7 @@ function App() {
                 <Route exact path='/patient' component={PatientProfile} />
                 <Route exact path='/patients' component={Patients} />
                 <Route exact path='/doctor' component={DoctorProfile} />
+                <Route exact path='/doctors' component={Doctors} />
             </Switch>
         </Router>
     );
