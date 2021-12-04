@@ -5,6 +5,7 @@ import Register from './screens/Register';
 import Landing from './screens/Landing';
 import PatientProfile from './screens/PatientProfile';
 import Patients from './screens/Patients';
+import DoctorProfile from './screens/DoctorProfile';
 
 
 function App() {
@@ -16,6 +17,7 @@ function App() {
                 <Route exact path='/register' component={Register} />
                 <Route exact path='/patient' component={PatientProfile} />
                 <Route exact path='/patients' component={Patients} />
+                <Route exact path='/doctor' component={DoctorProfile} />
             </Switch>
         </Router>
     );
