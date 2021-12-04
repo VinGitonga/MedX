@@ -13,7 +13,7 @@ const Bio = () => {
                 <Heading>Dr. Jane Sloan</Heading>
             </Flex>
             <Box mt={2}>
-                <SimpleGrid columns={{base: 4, md: 2, lg:2}} spacing={'20px'}>
+                <SimpleGrid columns={{ base: 4, md: 2, lg: 2 }} spacing={'20px'}>
                     <Box mx={2}>
                         <Text color={'gray.400'} fontWeight={600} fontSizee='sm' textTransform={'uppercase'}>Firstname</Text>
                         <Text color={'gray.900'} fontSize={'md'}>Jane</Text>
@@ -31,16 +31,8 @@ const Bio = () => {
                         <Text color={'gray.900'} fontSize={'md'}>12/05/1991</Text>
                     </Box>
                     <Box mx={2}>
-                    <Box mx={2}>
                         <Text color={'gray.400'} fontWeight={600} fontSizee='sm' textTransform={'uppercase'}>Age</Text>
                         <Text color={'gray.900'} fontSize={'md'}>42</Text>
-                    </Box>
-                        <Text color={'gray.400'} fontWeight={600} fontSizee='sm' textTransform={'uppercase'}>Phone No</Text>
-                        <Text color={'gray.900'} fontSize={'md'}>+254712345678</Text>
-                    </Box>
-                    <Box mx={2}>
-                        <Text color={'gray.400'} fontWeight={600} fontSizee='sm' textTransform={'uppercase'}>Address</Text>
-                        <Text color={'gray.900'} fontSize={'md'}>Nakuru, Kenya</Text>
                     </Box>
                 </SimpleGrid>
             </Box>
