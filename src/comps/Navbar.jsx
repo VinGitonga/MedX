@@ -86,6 +86,7 @@ export default function Navbar() {
                                     w="full"
                                     variant="ghost"
                                     leftIcon={<BsChatFill />}
+                                    onClick={() => history.push('/chats')}
                                 >
                                     Chats
                                 </Button>
@@ -117,6 +118,7 @@ export default function Navbar() {
                                 variant="ghost"
                                 leftIcon={<BsChatFill />}
                                 size="sm"
+                                onClick={() => history.push('/chats')}
                             >
                                 Chats
                             </Button>

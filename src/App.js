@@ -7,6 +7,7 @@ import PatientProfile from './screens/PatientProfile';
 import Patients from './screens/Patients';
 import DoctorProfile from './screens/DoctorProfile';
 import Doctors from './screens/Doctors';
+import Messaging from './screens/Messaging';
 
 
 function App() {
@@ -20,6 +21,7 @@ function App() {
                 <Route exact path='/patients' component={Patients} />
                 <Route exact path='/doctor' component={DoctorProfile} />
                 <Route exact path='/doctors' component={Doctors} />
+                <Route exact path='/chats' component={Messaging} />
             </Switch>
         </Router>
     );
