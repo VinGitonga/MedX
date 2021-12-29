@@ -7,7 +7,7 @@ import {
     Contact,
 } from "../comps/doctor";
 
-const DoctorProfile = () => {
+const DoctorProfile = ({user}) => {
     return (
         <>
             <Navbar />

@@ -8,7 +8,7 @@ import {
 } from "@chakra-ui/react";
 import Card from "./Card";
 
-const Profile = () => {
+const Profile = ({user}) => {
     return (
         <Card>
             <Flex alignItems="center">
@@ -17,25 +17,25 @@ const Profile = () => {
                     mr={5}
                     src="https://firstcrackfantasy.com/wp-content/uploads/1983/10/gordon.png"
                 />
-                <Heading>Michael Gordon</Heading>
+                <Heading>{user.firstname} {user.lastname}</Heading>
             </Flex>
             <Box mt={2}>
                 <SimpleGrid columns={{base:4, md:2, lg: 2}} spacing="20px">
                     <Box mx={2}>
                         <Text color={'gray.400'} fontWeight={600} fontSize="sm" textTransform={'uppercase'}>Firstname</Text>
-                        <Text color={'gray.900'} fontSize={'md'}>Michael</Text>
+                        <Text color={'gray.900'} fontSize={'md'}>{user.firstname}</Text>
                     </Box>
                     <Box>
                         <Text color={'gray.400'} fontWeight={600} fontSize="sm" textTransform={'uppercase'}>Lastname</Text>
-                        <Text color={'gray.900'} fontSize={'md'}>Gordon</Text>
+                        <Text color={'gray.900'} fontSize={'md'}>{user.lastname}</Text>
                     </Box>
                     <Box>
                         <Text color={'gray.400'} fontWeight={600} fontSize="sm" textTransform={'uppercase'}>Age</Text>
-                        <Text color={'gray.900'} fontSize={'md'}>27</Text>
+                        <Text color={'gray.900'} fontSize={'md'}>{user.age}</Text>
                     </Box>
                     <Box>
                         <Text color={'gray.400'} fontWeight={600} fontSize="sm" textTransform={'uppercase'}>Weight</Text>
-                        <Text color={'gray.900'} fontSize={'md'}>84kg</Text>
+                        <Text color={'gray.900'} fontSize={'md'}>{user.patientInfo.weight}kg</Text>
                     </Box>
                     <Box>
                         <Text color={'gray.400'} fontWeight={600} fontSize="sm" textTransform={'uppercase'}>Height</Text>
@@ -43,15 +43,15 @@ const Profile = () => {
                     </Box>
                     <Box>
                         <Text color={'gray.400'} fontWeight={600} fontSize="sm" textTransform={'uppercase'}>Sex</Text>
-                        <Text color={'gray.900'} fontSize={'md'}>M</Text>
+                        <Text color={'gray.900'} fontSize={'md'}>{user.gender}</Text>
                     </Box>
                     <Box>
                         <Text color={'gray.400'} fontWeight={600} fontSize="sm" textTransform={'uppercase'}>Dob</Text>
-                        <Text color={'gray.900'} fontSize={'md'}>19/03/1991</Text>
+                        <Text color={'gray.900'} fontSize={'md'}>{user.dob}</Text>
                     </Box>
                     <Box>
                         <Text color={'gray.400'} fontWeight={600} fontSize="sm" textTransform={'uppercase'}>Bloodtype</Text>
-                        <Text color={'gray.900'} fontSize={'md'}>A-</Text>
+                        <Text color={'gray.900'} fontSize={'md'}>{user.patientInfo.bloodType}</Text>
                     </Box>
                 </SimpleGrid>
             </Box>

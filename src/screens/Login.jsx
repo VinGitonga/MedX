@@ -67,7 +67,7 @@ const Login = () => {
                     .then(userCred => {
                         console.log('just')
                         // setLoading to false and push user to other page
-                        history.push('/patient')
+                        history.push('/myprofile')
                     }).catch(err => console.log(err.message))
             }
         }

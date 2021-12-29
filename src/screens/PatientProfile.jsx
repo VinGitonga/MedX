@@ -8,7 +8,7 @@ import {
 } from "../comps/patient";
 import { medicalHistoryData } from "../data/patients";
 
-const PatientProfile = () => {
+const PatientProfile = ({user}) => {
     return (
         <>
             <Navbar />
@@ -20,7 +20,7 @@ const PatientProfile = () => {
                     mx="auto"
                 >
                     <GridItem colSpan={{ base: "auto", md: 4 }}>
-                        <Profile />
+                        <Profile user={user} />
                         <Allergies />
                         <Medication />
                     </GridItem>

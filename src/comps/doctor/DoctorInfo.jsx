@@ -1,7 +1,7 @@
 import { Box, Heading, SimpleGrid, Text } from '@chakra-ui/react'
 import Card from '../patient/Card';
 
-const DoctorInfo = () => {
+const DoctorInfo = ({user}) => {
     return (
         <Card>
             <Box mb={4}>
@@ -10,7 +10,7 @@ const DoctorInfo = () => {
             <SimpleGrid columns={2} spacing={5}>
                 <Box>
                     <Text color={'gray.400'} fontWeight={600} fontSize="sm" textTransform={'uppercase'}>License</Text>
-                    <Text color={'gray.900'} fontSize={'md'}>MEDKE2015</Text>
+                    <Text color={'gray.900'} fontSize={'md'}>{user.doctorInfo.license}</Text>
                 </Box>
                 <Box>
                     <Text color={'gray.400'} fontWeight={600} fontSize="sm" textTransform={'uppercase'}>Accreditations</Text>
@@ -18,7 +18,7 @@ const DoctorInfo = () => {
                 </Box>
                 <Box>
                     <Text color={'gray.400'} fontWeight={600} fontSize="sm" textTransform={'uppercase'}>Speciality</Text>
-                    <Text color={'gray.900'} fontSize={'md'}>Cardiology</Text>
+                    <Text color={'gray.900'} fontSize={'md'}>{user.doctorInfo.speciality}</Text>
                 </Box>
                 <Box>
                     <Text color={'gray.400'} fontWeight={600} fontSize="sm" textTransform={'uppercase'}>Education</Text>
@@ -26,7 +26,7 @@ const DoctorInfo = () => {
                 </Box>
                 <Box>
                     <Text color={'gray.400'} fontWeight={600} fontSize="sm" textTransform={'uppercase'}>Years of Experience</Text>
-                    <Text color={'gray.900'} fontSize={'md'}>12</Text>
+                    <Text color={'gray.900'} fontSize={'md'}>{user.doctorInfo.yearsOfExperience}</Text>
                 </Box>
                 <Box>
                     <Text color={'gray.400'} fontWeight={600} fontSize="sm" textTransform={'uppercase'}>Languages</Text>
