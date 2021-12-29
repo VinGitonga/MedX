@@ -8,10 +8,8 @@ import {
     Icon,
 } from "@chakra-ui/react";
 import { RiUserSettingsFill } from "react-icons/ri";
-import StepZero from './Signup/StepZero'
 
-
-const Register = () => {
+const Register = ({ children }) => {
     return (
         <Box mx="auto" h={"100vh"} bg={"#1a202c"}>
             <SimpleGrid
@@ -46,7 +44,9 @@ const Register = () => {
                             Create an Account
                         </Text>
                     </Center>
-                    <StepZero />
+                    <Box top={'5px'}>
+                        {children}
+                    </Box>
                 </Box>
             </SimpleGrid>
         </Box>

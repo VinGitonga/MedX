@@ -1,3 +1,4 @@
+import { useState, useContext } from 'react'
 import {
     Box,
     useColorModeValue,
@@ -11,12 +12,67 @@ import {
     Text,
     Icon
 } from "@chakra-ui/react";
-import { RiLoginCircleLine} from "react-icons/ri";
+import { RiLoginCircleLine } from "react-icons/ri";
 import { GiPadlockOpen } from "react-icons/gi";
 import { useHistory } from "react-router-dom";
+import { MessageContext } from '../context'
+import { getAuth, signInWithEmailAndPassword } from '@firebase/auth'
+import { app } from '../firebase'
 
 const Login = () => {
     const history = useHistory()
+    const { flashMessage, setFlashMessage } = useContext(MessageContext);
+
+    const [formState, setFormState] = useState({
+        email: '',
+        password: ''
+    })
+
+    const handleChange = (e, key) => {
+        setFormState({
+            ...formState,
+            [key]: e.target.value,
+        });
+    }
+
+    const clickSubmit = e => {
+        e.preventDefault()
+        const emailRegex = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/;
+
+        if (!formState.email || !formState.password) {
+            setFlashMessage({
+                status: "error",
+                title: "Inputs Error",
+                description: "Please fill all the inputs",
+            });
+            return null;
+        } else if (!emailRegex.test(formState.email)) {
+            setFlashMessage({
+                status: "error",
+                title: "Email error",
+                description: "Please enter a valid email address",
+            });
+            return null;
+        } else if (formState.password.length < 6) {
+            setFlashMessage({
+                status: "error",
+                title: "Password Error",
+                description: "Passwords must be at least 6 characters",
+            });
+        } else {
+            if (!flashMessage) {
+                const auth = getAuth(app);
+                console.log('am here')
+                signInWithEmailAndPassword(auth, formState.email, formState.password)
+                    .then(userCred => {
+                        console.log('just')
+                        // setLoading to false and push user to other page
+                        history.push('/patient')
+                    }).catch(err => console.log(err.message))
+            }
+        }
+    }
+
     return (
         <Box mx="auto" h={"100vh"} bg={"#1a202c"}>
             <SimpleGrid
@@ -65,7 +121,8 @@ const Login = () => {
                                 mt={0}
                                 type="email"
                                 placeholder="Email Address"
-                                required="true"
+                                value={formState.email}
+                                onChange={e => handleChange(e, 'email')}
                                 color={"gray.100"}
                             />
                         </Flex>
@@ -75,8 +132,9 @@ const Login = () => {
                                 mt={0}
                                 type="password"
                                 placeholder="Password"
-                                required="true"
                                 color={"gray.100"}
+                                value={formState.password}
+                                onChange={e => handleChange(e, 'password')}
                             />
                         </Flex>
                         <Button
@@ -85,6 +143,7 @@ const Login = () => {
                             w="full"
                             py={2}
                             type="submit"
+                            onClick={clickSubmit}
                         >
                             Login
                         </Button>
