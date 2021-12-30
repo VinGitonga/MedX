@@ -184,7 +184,7 @@ const StepFour = ({
                                     onClick={() => handleRemoveClick("languages", i)}
                                 />
                             )}
-                            {formState.languages.length - 1 === 1 && (
+                            {formState.languages.length - 1 === i && (
                                 <IconButton
                                     icon
                                     onClick={() =>

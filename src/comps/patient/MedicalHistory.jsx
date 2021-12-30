@@ -15,8 +15,12 @@ import {
 } from "@chakra-ui/react";
 import { FiEdit3 } from "react-icons/fi";
 import { GrAdd } from "react-icons/gr";
+import { useContext } from 'react'
+import { ModalContext, AuthContext } from '../../context'
 
 const MedicalHistory = ({ data }) => {
+    const { user } = useContext(AuthContext)
+    const { setOpen } = useContext(ModalContext)
     return (
         <Card>
             <Flex justifyContent={"space-between"} alignItems={"center"} mb={6}>
@@ -34,6 +38,8 @@ const MedicalHistory = ({ data }) => {
                         aria-label={"type"}
                         icon={<GrAdd />}
                         isRound
+                        onClick={() => setOpen(true)}
+                        disabled={user.isDoctor ? false : true}
                         bg={'gray.300'}
                     />
                 </HStack>

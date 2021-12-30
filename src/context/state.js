@@ -1,7 +1,7 @@
 import { cloneElement } from 'react'
 import { MessageContextProvider } from './message'
 import { AuthContextProvider } from './authUser'
-import { UsersContextProvider } from '.';
+import { UsersContextProvider, ModalContextProvider } from '.';
 
 function ProviderComposer({ contexts, children }) {
     return contexts.reduceRight(
@@ -20,6 +20,7 @@ const ContextProvider = ({ children }) => {
                 <MessageContextProvider />,
                 <AuthContextProvider />,
                 <UsersContextProvider />,
+                <ModalContextProvider />,
             ]}
         >
             {children}

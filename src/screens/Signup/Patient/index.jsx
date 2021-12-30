@@ -10,7 +10,7 @@ import StepFour from "./StepFour";
 import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth'
 import { addDoc, collection, doc, serverTimestamp, updateDoc } from 'firebase/firestore'
 import { ref, getDownloadURL, uploadString } from 'firebase/storage'
-import { db, storage, app } from '../../../firebase'
+import { db, storage, app } from '../../../firebase';
 
 const Patient = () => {
     const { flashMessage, setFlashMessage } = useContext(MessageContext);

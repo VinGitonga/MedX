@@ -9,6 +9,7 @@ import MyProfile from "./screens/MyProfile";
 import UserProfile from "./screens/UserProfile";
 import Messaging from "./screens/Messaging";
 import FlashMessage from "./comps/FlashMessage";
+import AddMedicalHistory from './comps/patient/AddMedicalHistory'
 import DoctorSignup from "./screens/Signup/Doctor";
 import PatientSignup from "./screens/Signup/Patient";
 
@@ -16,6 +17,7 @@ function App() {
     return (
         <Router>
             <FlashMessage />
+            <AddMedicalHistory />
             <Switch>
                 <Route exact path="/" component={Landing} />
                 <Route exact path="/login" component={Login} />
