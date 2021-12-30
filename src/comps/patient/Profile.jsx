@@ -15,7 +15,7 @@ const Profile = ({user}) => {
                 <Avatar
                     size="2xl"
                     mr={5}
-                    src="https://firstcrackfantasy.com/wp-content/uploads/1983/10/gordon.png"
+                    src={user.image}
                 />
                 <Heading>{user.firstname} {user.lastname}</Heading>
             </Flex>
@@ -35,7 +35,7 @@ const Profile = ({user}) => {
                     </Box>
                     <Box>
                         <Text color={'gray.400'} fontWeight={600} fontSize="sm" textTransform={'uppercase'}>Weight</Text>
-                        <Text color={'gray.900'} fontSize={'md'}>{user.patientInfo.weight}kg</Text>
+                        <Text color={'gray.900'} fontSize={'md'}>{user?.patientInfo?.weight}kg</Text>
                     </Box>
                     <Box>
                         <Text color={'gray.400'} fontWeight={600} fontSize="sm" textTransform={'uppercase'}>Height</Text>
@@ -51,7 +51,7 @@ const Profile = ({user}) => {
                     </Box>
                     <Box>
                         <Text color={'gray.400'} fontWeight={600} fontSize="sm" textTransform={'uppercase'}>Bloodtype</Text>
-                        <Text color={'gray.900'} fontSize={'md'}>{user.patientInfo.bloodType}</Text>
+                        <Text color={'gray.900'} fontSize={'md'}>{user?.patientInfo?.bloodType}</Text>
                     </Box>
                 </SimpleGrid>
             </Box>

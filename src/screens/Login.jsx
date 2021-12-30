@@ -15,13 +15,16 @@ import {
 import { RiLoginCircleLine } from "react-icons/ri";
 import { GiPadlockOpen } from "react-icons/gi";
 import { useHistory } from "react-router-dom";
-import { MessageContext } from '../context'
+import { MessageContext, AuthContext } from '../context'
 import { getAuth, signInWithEmailAndPassword } from '@firebase/auth'
-import { app } from '../firebase'
+import { app, db } from '../firebase'
+import { collection, query, where, getDocs } from "firebase/firestore";
+
 
 const Login = () => {
     const history = useHistory()
     const { flashMessage, setFlashMessage } = useContext(MessageContext);
+    const { setUser } = useContext(AuthContext)
 
     const [formState, setFormState] = useState({
         email: '',
@@ -64,8 +67,19 @@ const Login = () => {
                 const auth = getAuth(app);
                 console.log('am here')
                 signInWithEmailAndPassword(auth, formState.email, formState.password)
-                    .then(userCred => {
-                        console.log('just')
+                    .then(async userCred => {
+                        const userData = query(
+                            collection(db, "users"),
+                            where("email", "==", userCred.user.email)
+                        );
+                        const userInfoSnap = await getDocs(userData);
+                        // setUser(userInfoSnap)
+                        // After getting the snapshot save the userinfo in the localstorage and also set the user
+                        userInfoSnap.forEach((doc) => {
+                            localStorage.setItem("userData", doc.data());
+                            console.log(doc.data())
+                            setUser(doc.data());
+                        });
                         // setLoading to false and push user to other page
                         history.push('/myprofile')
                     }).catch(err => console.log(err.message))

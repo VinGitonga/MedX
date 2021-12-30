@@ -28,14 +28,16 @@ import {
 } from "react-icons/ai";
 import { BsChatFill } from "react-icons/bs";
 import { MdStorm } from 'react-icons/md'
-import { RiStethoscopeFill, RiUserHeartFill, RiLogoutCircleFill } from 'react-icons/ri'
-import { Fragment } from 'react'
+import { RiStethoscopeFill, RiUserHeartFill, RiLogoutCircleFill, RiUserFollowFill } from 'react-icons/ri'
+import { Fragment, useContext } from 'react'
 import { useHistory } from 'react-router-dom'
+import { AuthContext } from '../context'
 
 export default function Navbar() {
     const bg = useColorModeValue("white", "gray.800");
     const mobileNav = useDisclosure();
     const history = useHistory()
+    const { user } = useContext(AuthContext)
 
 
     return (
@@ -93,10 +95,10 @@ export default function Navbar() {
                                 <Button
                                     w="full"
                                     variant="ghost"
-                                    leftIcon={<RiStethoscopeFill />}
-                                    onClick={() => history.push('/doctors')}
+                                    leftIcon={user.isDoctor ? <RiStethoscopeFill /> : <RiUserFollowFill />}
+                                    onClick={() => history.push(user.isDoctor ? '/patients' : '/doctors')}
                                 >
-                                    Doctors
+                                    {user.isDoctor ? 'Patients' : 'Doctors'}
                                 </Button>
                             </VStack>
                         </Box>
@@ -123,12 +125,12 @@ export default function Navbar() {
                                 Chats
                             </Button>
                             <Button
+                                w="full"
                                 variant="ghost"
-                                leftIcon={<RiStethoscopeFill />}
-                                onClick={() => history.push('/doctors')}
-                                size="sm"
+                                leftIcon={user.isDoctor ? <RiStethoscopeFill /> : <RiUserFollowFill />}
+                                onClick={() => history.push(user.isDoctor ? '/patients' : '/doctors')}
                             >
-                                Doctors
+                                {user.isDoctor ? 'Patients' : 'Doctors'}
                             </Button>
                         </HStack>
                     </HStack>
@@ -158,11 +160,11 @@ export default function Navbar() {
                             <MenuButton
                                 as={Avatar}
                                 size="sm"
-                                name="Michael Gordon"
-                                src="https://firstcrackfantasy.com/wp-content/uploads/1983/10/gordon.png"
+                                name={user.firstname}
+                                src={user.image}
                             />
                             <MenuList>
-                                <MenuItem icon={<RiUserHeartFill />}>
+                                <MenuItem icon={<RiUserHeartFill />} onClick={() => history.push('/myprofile')}>
                                     My Profile
                                 </MenuItem>
                                 <MenuItem icon={<RiLogoutCircleFill />}>

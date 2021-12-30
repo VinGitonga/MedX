@@ -11,9 +11,12 @@ import { Link } from "react-router-dom";
 import { Card } from "../comps/patient";
 import { GrAdd } from "react-icons/gr";
 import Navbar from "../comps/Navbar";
-import { DOCTORS } from "../data/patients";
+import { useContext } from 'react'
+import { UsersContext } from '../context'
 
 const Doctors = () => {
+    const { doctors } = useContext(UsersContext)
+
     return (
         <>
             <Navbar />
@@ -22,8 +25,8 @@ const Doctors = () => {
             </Heading>
             <Box px={14} py={14} mx="auto">
                 <Card>
-                    {DOCTORS.map((patient, index) => (
-                        <DoctorItem data={patient} key={index} />
+                    {doctors.map((doctor) => (
+                        <DoctorItem data={doctor} key={doctor.id} />
                     ))}
                 </Card>
             </Box>
@@ -31,28 +34,28 @@ const Doctors = () => {
     );
 };
 
-const DoctorItem = ({data}) => (
+const DoctorItem = ({ data }) => (
     <Box mb={6}>
         <Flex alignItems={"center"} justifyContent={"space-between"}>
             <Flex alignItems={"center"}>
                 <Avatar
                     size="xl"
                     mr={5}
-                    src={data.imageUrl}
+                    src={data.image}
                 />
-                <Link to={"/doctor"}>
+                <Link to={`/profile/${data.id}`}>
                     <Text
                         fontSize={"3xl"}
                         _hover={{
                             borderBottom: "2px solid #4299E1",
                         }}
                     >
-                        {data.name}
+                        {data.firstname} {' '} {data.lastname}
                     </Text>
                 </Link>
             </Flex>
-            <Tag display={{base:'none', lg:'flex'}} bg={"teal.400"} variant="subtle" size="lg" borderRadius={"full"}>
-                {data.speciality}
+            <Tag display={{ base: 'none', lg: 'flex' }} bg={"teal.400"} variant="subtle" size="lg" borderRadius={"full"}>
+                {data.doctorInfo.speciality}
             </Tag>
             <IconButton
                 size={"md"}

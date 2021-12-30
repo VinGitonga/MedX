@@ -28,7 +28,7 @@ const StepFour = ({
     handleImage
 }) => {
     const bloodTypes = ["A+", "A-", "B+", "B-", "O+", "O-", "AB+", "AB-"];
-    const severityOptions = [1, 2, 3, 4, 5];
+    const severityOptions = ["Minimal", "Moderate","Severe"];
     return (
         <SimpleGrid
             columns={1}

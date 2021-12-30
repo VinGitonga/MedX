@@ -1,70 +1,66 @@
-# Getting Started with Create React App
+# An Integrated Virtual Health Consultation Platform
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Live Site
 
-## Available Scripts
 
-In the project directory, you can run:
+## Github Repo
 
-### `yarn start`
+https://github.com/VinGitonga/medx
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Purpose
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+MedX is a holistic health services consultation platform that seeks to integrate common medical practice task and processes into a unified system. The application primarily aims to merge the scheduling of appointments, patient summaries, past visit details into a single piece of software. At its basis, MedX will serve as a management and interaction portal between doctors and patients where healthcare information can be shared and stored privately.
 
-### `yarn test`
+One of the primary aims for developing the website is to built a holistic healthcare solution that can be adopted by multiple medical institutions and their patients. As a result common tasks like check up scheduling, documentation of patient health and billing can be integrated into a single system. The benefit pf syntheising recurrent tasks into a piece of software become evident via the time saved on processing medical management and moreover client info can be accessed in a single location which aids at smoothening the way the records are managed between concerned organizations.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Functionalities and Features
 
-### `yarn build`
+### MVP Functionality
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+#### User auth system
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Authentication is needed for clients to use the app, as a user and profile are needed to make bookings with medical practioners.
+Similarly doctors also need to authenticated to manage the bookings as well so as to protect access the sensitive client data.
 
-### `yarn eject`
+- Role-based auth
+- Users can either be Doctor or Patient
+- Roles are presented at homepage
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+#### Appointment booking
+- Doctors can approve or reject appointments
+- Clients can create, update or delete appointments
+- Both Doctors and Clients can view their upcoming appointments
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+#### Dashboard - Doctor
+- Overview list of all current patients
+- Each patient has a profile which displays all relevant basic user info
+- Doctors have the ability to add notes about the patient
+- Symptoms and general comments
+- List of Upcoming appointments
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+#### Dashboard - Patient
+- Able to see all doctors on MedX
+- Ability to select a Doctor and view their appointments
+- View all their past appointments
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
 
-## Learn More
+### Extended Functionality
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+#### Live text chat/messaging between doctor and patient
+- From either the client or doctor dashboard, there will be the ability to initiate a live text chat, that is confidential between them
 
-To learn React, check out the [React documentation](https://reactjs.org/).
 
-### Code Splitting
+## Target Audience
+MedX is targeted towards medical professionals, including general practioners, physicians and their patients.
+For instance, a medical clinic can register their practice and gain access to features available and on another hand their clients can signup and access tailored services such as telehealth, appointment booking and access to previous visits.
+Due to the current global crisis of the spread of COVID-19, MedX aims at facilitating consultations in order to reduces the risk of transmission between doctors and patients alike.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+## Tech Stack
 
-### Analyzing the Bundle Size
+- Firebase
+- React
+- Chakra-UI
+- React Context API
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+MedX utilizes a number of open source libraries to assist with faster development time and improved auth security.

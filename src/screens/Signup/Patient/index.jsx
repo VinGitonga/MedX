@@ -18,7 +18,7 @@ const Patient = () => {
     const [tabIndex, setTabIndex] = useState(0);
     const imagePickerRef = useRef(null);
     const [formState, setFormState] = useState({
-        isDoctor: true,
+        isDoctor: false,
         email: "",
         password: "",
         confirmPassword: "",
@@ -169,6 +169,7 @@ const Patient = () => {
             phoneno: formState.phoneno,
             email: formState.email,
             isDoctor: formState.isDoctor,
+            dob: formState.dob,
             address: {
                 street: formState.street,
                 city: formState.city,
@@ -179,7 +180,7 @@ const Patient = () => {
                 bloodType: formState.bloodType,
                 allergies: formState.allergies,
             },
-            created:serverTimestamp,
+            created:serverTimestamp(),
         };
     };
 
@@ -218,10 +219,11 @@ const Patient = () => {
                         await uploadString(imageRef, formState.image, "data_url").then(async snapshot => {
                             const downloadUrl = await getDownloadURL(imageRef)
 
-                            await updateDoc(doc(db, 'posts', docRef.id), {
+                            await updateDoc(doc(db, 'users', docRef.id), {
                                 image: downloadUrl
                             })
                         })
+                        history.push('/login')
                         
                     }).catch(err => console.log(err.message));
             }

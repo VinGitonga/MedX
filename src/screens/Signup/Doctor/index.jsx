@@ -156,6 +156,7 @@ const Doctor = () => {
                 city: formState.city,
                 country: formState.country,
             },
+            dob: formState.dob,
             doctorInfo: {
                 license: formState.license,
                 accreditations: deleteKeys("accreditations", "accreditation"),
@@ -237,7 +238,7 @@ const Doctor = () => {
                                 image: downloadUrl
                             })
                         })
-                        
+                        history.push('/login')
                     }).catch(err => console.log(err.message));
             }
         }

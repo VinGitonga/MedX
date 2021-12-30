@@ -1,4 +1,3 @@
-import useAuthListener from "../hooks/use-auth-listener";
 import { SimpleGrid, Box, GridItem } from "@chakra-ui/react";
 import Navbar from "../comps/Navbar";
 import { Bio, DoctorInfo, Upcoming, Contact } from "../comps/doctor";
@@ -9,9 +8,12 @@ import {
     Profile,
 } from "../comps/patient";
 import { medicalHistoryData } from "../data/patients";
+import { AuthContext } from "../context";
+import { useContext } from 'react'
+
 
 const MyProfile = () => {
-    const { user } = useAuthListener();
+    const { user } = useContext(AuthContext);
 
     const doctor = ({ user }) => (
         <>

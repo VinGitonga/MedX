@@ -11,9 +11,34 @@ import { Link } from "react-router-dom";
 import { Card } from "../comps/patient";
 import { GrAdd } from "react-icons/gr";
 import Navbar from "../comps/Navbar";
-import { PATIENTS } from "../data/patients";
+import {
+    onSnapshot,
+    collection,
+    query,
+    orderBy,
+    where,
+} from "@firebase/firestore";
+import { db } from "../firebase";
+import { useState, useEffect } from 'react'
 
 const Patients = () => {
+    const [patients, setPatients] = useState([])
+
+    useEffect(
+        () =>
+            onSnapshot(
+                query(
+                    collection(db, "users"),
+                    orderBy("created", "desc"),
+                    where("isDoctor", "==", false)
+                ),
+                (snapshot) => {
+                    setPatients(snapshot.docs);
+                }
+            ),
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+        [db]
+    );
     return (
         <>
             <Navbar />
@@ -22,8 +47,8 @@ const Patients = () => {
             </Heading>
             <Box px={14} py={14} mx="auto">
                 <Card>
-                    {PATIENTS.map((patient, index) => (
-                        <PatientItem data={patient} key={index} />
+                    {patients.map((patient) => (
+                        <PatientItem data={patient.data()} id={patient.id} key={patient.id} />
                     ))}
                 </Card>
             </Box>
@@ -31,28 +56,28 @@ const Patients = () => {
     );
 };
 
-const PatientItem = ({data}) => (
+const PatientItem = ({data, id}) => (
     <Box mb={6}>
         <Flex alignItems={"center"} justifyContent={"space-between"}>
             <Flex alignItems={"center"}>
                 <Avatar
                     size="xl"
                     mr={5}
-                    src={data.imageUrl}
+                    src={data.image}
                 />
-                <Link to={"/patient"}>
+                <Link to={`/profile/${id}`}>
                     <Text
                         fontSize={"3xl"}
                         _hover={{
                             borderBottom: "2px solid #4299E1",
                         }}
                     >
-                        {data.name}
+                        {data.firstname} {' '} {data.lastname}
                     </Text>
                 </Link>
             </Flex>
             <Tag display={{base:'none', lg:'flex'}} bg={"teal.400"} variant="subtle" size="lg" borderRadius={"full"}>
-                Payment {data.paymentStatus}
+                {data.gender}
             </Tag>
             <IconButton
                 size={"md"}
