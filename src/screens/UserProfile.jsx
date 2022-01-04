@@ -4,12 +4,12 @@ import { db } from "../firebase";
 import { useParams } from "react-router-dom";
 import DoctorProfile from "./DoctorProfile";
 import PatientProfile from "./PatientProfile";
-import { ModalContext } from '../context'
+import { UserIdContext } from '../context'
 
 const UserProfile = () => {
     const [userData, setUserData] = useState({});
     const { userId } = useParams();
-    const { setUserId } = useContext(ModalContext) //setUserId to be used in AddMedicalHistory
+    const { setUserId } = useContext(UserIdContext) //setUserId to be used in AddMedicalHistory
 
     useEffect(
         () =>

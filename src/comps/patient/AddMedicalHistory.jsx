@@ -20,7 +20,7 @@ import { MdRemove, MdAdd } from "react-icons/md";
 import { addDoc, collection } from "@firebase/firestore";
 import { db } from "../../firebase";
 import { FiEdit3 } from 'react-icons/fi'
-import { AuthContext, ModalContext } from "../../context";
+import { AuthContext, ModalContext, UserIdContext } from "../../context";
 
 
 const AddMedicalHistory = () => {
@@ -33,7 +33,8 @@ const AddMedicalHistory = () => {
     });
 
     const { user } = useContext(AuthContext);
-    const { open, setOpen, userId } = useContext(ModalContext);
+    const { open, setOpen } = useContext(ModalContext);
+    const { userId } = useContext(UserIdContext)
     const [error, setError] = useState(null);
 
     const handleAddClick = (key, formFieldsObject) => {
