@@ -1,12 +1,12 @@
 # An Integrated Virtual Health Consultation Platform
 
 ## Live Site
-
+https://med-x.vercel.app
 
 
 ## Github Repo
 
-https://github.com/VinGitonga/medx
+https://github.com/VinGitonga/MedX
 
 ## Purpose
 
