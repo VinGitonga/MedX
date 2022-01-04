@@ -12,6 +12,8 @@ import { AuthContext } from "../context";
 import { useContext } from 'react'
 
 
+
+
 const MyProfile = () => {
     const { user } = useContext(AuthContext);
 
