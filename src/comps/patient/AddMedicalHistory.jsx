@@ -81,7 +81,7 @@ const AddMedicalHistory = () => {
             description: formState.description,
             date: new Date().toISOString().slice(0, 10),
             tags: deleteKeys("tags", "tag"),
-            addedBy: user.firstname,
+            addedBy: user.data.firstname,
             userId: userId,
         };
     };

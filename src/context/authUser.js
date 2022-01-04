@@ -24,7 +24,7 @@ export const AuthContextProvider = ({ children }) => {
                 userInfoSnap.forEach((doc) => {
                     localStorage.setItem("userData", JSON.stringify(doc.data()));
                     // console.log(doc.data())
-                    setUser(doc.data());
+                    setUser({id: doc.id, data: doc.data()});
                 });
             } else {
                 // Otherwise logoff user

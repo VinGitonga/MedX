@@ -95,10 +95,10 @@ export default function Navbar() {
                                 <Button
                                     w="full"
                                     variant="ghost"
-                                    leftIcon={user.isDoctor ? <RiStethoscopeFill /> : <RiUserFollowFill />}
-                                    onClick={() => history.push(user.isDoctor ? '/patients' : '/doctors')}
+                                    leftIcon={user.data.isDoctor ? <RiStethoscopeFill /> : <RiUserFollowFill />}
+                                    onClick={() => history.push(user.data.isDoctor ? '/patients' : '/doctors')}
                                 >
-                                    {user.isDoctor ? 'Patients' : 'Doctors'}
+                                    {user.data.isDoctor ? 'Patients' : 'Doctors'}
                                 </Button>
                             </VStack>
                         </Box>
@@ -127,10 +127,10 @@ export default function Navbar() {
                             <Button
                                 w="full"
                                 variant="ghost"
-                                leftIcon={user.isDoctor ? <RiStethoscopeFill /> : <RiUserFollowFill />}
-                                onClick={() => history.push(user.isDoctor ? '/patients' : '/doctors')}
+                                leftIcon={user.data.isDoctor ? <RiStethoscopeFill /> : <RiUserFollowFill />}
+                                onClick={() => history.push(user.data.isDoctor ? '/patients' : '/doctors')}
                             >
-                                {user.isDoctor ? 'Patients' : 'Doctors'}
+                                {user.data.isDoctor ? 'Patients' : 'Doctors'}
                             </Button>
                         </HStack>
                     </HStack>
@@ -160,8 +160,8 @@ export default function Navbar() {
                             <MenuButton
                                 as={Avatar}
                                 size="sm"
-                                name={user.firstname}
-                                src={user.image}
+                                name={user.data.firstname}
+                                src={user.data.image}
                             />
                             <MenuList>
                                 <MenuItem icon={<RiUserHeartFill />} onClick={() => history.push('/myprofile')}>

@@ -3,18 +3,33 @@ import {
     Flex,
     Text,
     Avatar,
-    Heading
+    Heading,
+    IconButton
 } from '@chakra-ui/react'
 import { Link } from 'react-router-dom'
 import { upcomingConsultation } from '../../data/patients'
 import Card from '../patient/Card'
+import { GrAdd } from 'react-icons/gr'
+import { useContext } from 'react'
+import { AuthContext, ModalContext } from '../../context'
 
 const Upcoming = () => {
+    const { user } = useContext(AuthContext)
+    const { setOpen } = useContext(ModalContext)
     return (
         <Card>
-            <Box>
+            <Flex justify={'space-between'}>
                 <Heading>Upcoming Consultations</Heading>
-            </Box>
+                <IconButton
+                    size={"md"}
+                    aria-label={"type"}
+                    icon={<GrAdd />}
+                    isRound
+                    onClick={() => setOpen(true)}
+                    disabled={user.data.isDoctor ? true : false}
+                    bg={'gray.300'}
+                />
+            </Flex>
             <Box px={7} py={14}>
                 {upcomingConsultation.map((info, index) => (
                     <UpcomingItem data={info} key={index} />

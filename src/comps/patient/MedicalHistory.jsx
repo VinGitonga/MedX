@@ -39,7 +39,7 @@ const MedicalHistory = ({ data }) => {
                         icon={<GrAdd />}
                         isRound
                         onClick={() => setOpen(true)}
-                        disabled={user.isDoctor ? false : true}
+                        disabled={user.data.isDoctor ? false : true}
                         bg={'gray.300'}
                     />
                 </HStack>

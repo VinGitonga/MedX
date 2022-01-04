@@ -10,6 +10,7 @@ import UserProfile from "./screens/UserProfile";
 import Messaging from "./screens/Messaging";
 import FlashMessage from "./comps/FlashMessage";
 import AddMedicalHistory from './comps/patient/AddMedicalHistory'
+import AddAppointment from './comps/doctor/AddAppointment'
 import DoctorSignup from "./screens/Signup/Doctor";
 import PatientSignup from "./screens/Signup/Patient";
 
@@ -18,6 +19,7 @@ function App() {
         <Router>
             <FlashMessage />
             <AddMedicalHistory />
+            <AddAppointment />
             <Switch>
                 <Route exact path="/" component={Landing} />
                 <Route exact path="/login" component={Login} />
