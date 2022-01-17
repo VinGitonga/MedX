@@ -1,9 +1,14 @@
+import React from 'react'
 import { ChakraProvider } from '@chakra-ui/react'
+import ContextProvider from '../context/state'
+
 
 function MyApp({ Component, pageProps }) {
     return (
         <ChakraProvider>
-            <Component {...pageProps} />
+            <ContextProvider>
+                <Component {...pageProps} />
+            </ContextProvider>
         </ChakraProvider>
     )
 }
