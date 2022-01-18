@@ -18,16 +18,16 @@ import {
     ModalBody,
     ModalFooter,
 } from "@chakra-ui/react";
-import useAuth from '../../hooks/use-auth'
+import { useAuthUser } from '../../context'
 
 const AddAppointment = () => {
     const [date, setDate] = useState(null);
     const [time, setTime] = useState(null);
     const [error, setError] = useState(null);
 
-    const { user } = useAuth()
+    const { authUser: user } = useAuthUser()
     const { userId } = useContext(UserIdContext);
-    const { show, setShow } = useContext(ModalContext);
+    const { appointmentModalOpen: show, setAppointmentModalOpen: setShow } = useContext(ModalContext);
 
     const sanitizedForm = () => {
         return {

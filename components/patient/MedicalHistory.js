@@ -1,4 +1,3 @@
-import React from 'react'
 import {
     Flex,
     Box,
@@ -17,12 +16,16 @@ import {
 import { FiEdit3 } from "react-icons/fi";
 import { GrAdd } from "react-icons/gr";
 import { useContext } from 'react'
-import { ModalContext } from '../../context'
+import { ModalContext, useAuthUser, UserIdContext } from '../../context'
+import AddMedicalHistory from './AddMedicalHistory'
 
-const MedicalHistory = ({ data }) => {
-    const { setOpen } = useContext(ModalContext)
+const MedicalHistory = ({ data, userId }) => {
+    const { setShowMedModal: setOpen } = useContext(ModalContext)
+    const { setUserId } = useContext(UserIdContext)
+    const { authUser: user } = useAuthUser()
     return (
         <Card>
+            <AddMedicalHistory />
             <Flex justifyContent={"space-between"} alignItems={"center"} mb={6}>
                 <Heading>Medical History</Heading>
                 <HStack>
@@ -38,8 +41,11 @@ const MedicalHistory = ({ data }) => {
                         aria-label={"type"}
                         icon={<GrAdd />}
                         isRound
-                        onClick={() => setOpen(true)}
-                        // disabled={user.isDoctor ? false : true}
+                        onClick={() => {
+                            setUserId(userId)
+                            setOpen(true)
+                        }}
+                        disabled={user.isDoctor ? false : true}
                         bg={'gray.300'}
                     />
                 </HStack>

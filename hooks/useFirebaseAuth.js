@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { doc, getDoc } from "@firebase/firestore";
 import {
     onAuthStateChanged,
@@ -25,6 +25,7 @@ export default function useFirebaseAuth() {
         const userRef = doc(db, "users", authState.uid);
         const userSnap = await getDoc(userRef);
         setAuthUser({ id: userSnap.id, ...userSnap.data() });
+        sessionStorage.setItem('userInfo', JSON.stringify({ id: userSnap.id, ...userSnap.data() }))
         setLoading(false);
     };
 
@@ -36,24 +37,42 @@ export default function useFirebaseAuth() {
         createUserWithEmailAndPassword(auth, email, password);
     };
 
-    const logout = () => { 
+    const logout = () => {
         signOut(auth).then(() => {
             setAuthUser(null)
             setLoading(true)
             router.replace('/')
         })
-     };
+    };
+
+    useEffect(() => {
+        if (!authUser && sessionStorage.getItem('userInfo')) {
+            setAuthUser(JSON.parse(sessionStorage.getItem('userInfo')))
+        }
+    }, [authUser])
 
     useEffect(
         () => onAuthStateChanged(auth, (user) => authStateChanged(user)),
         []
     );
 
-    return {
-        authUser,
-        loading,
-        signin,
-        register,
-        logout
-    };
+    return useMemo(
+        () => ({
+            authUser,
+            loading,
+            signin,
+            register,
+            logout
+        }),
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+        [authUser, loading]
+    )
+
+    // return {
+    //     authUser,
+    //     loading,
+    //     signin,
+    //     register,
+    //     logout
+    // };
 }

@@ -17,7 +17,7 @@ const UserProfile = () => {
 
 
     useEffect(() => {
-        if (!fetching && !authUser) {
+        if ((!fetching && !authUser) || !authUser) {
             router.replace('/login')
         }
     }, [authUser, fetching, router])
@@ -40,7 +40,6 @@ const UserProfile = () => {
         userData.isDoctor ? <DoctorProfile user={userData} /> : <PatientProfile user={userData} />
     )
 
-    // return userData.isDoctor ? <DoctorProfile user={userData} /> : <PatientProfile user={userData} />
 };
 
 const Loader = () => (

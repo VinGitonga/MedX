@@ -1,4 +1,3 @@
-import React from "react";
 import {
     Box,
     Text,
@@ -27,6 +26,7 @@ export default function Doctors() {
     const { loading, authUser } = useAuthUser();
     const [doctors, setDoctors] = useState([]);
     const router = useRouter();
+    console.log(authUser)
 
     useEffect(() => {
         if (!loading && !authUser) {
@@ -54,7 +54,7 @@ export default function Doctors() {
 
     return (
         <Box>
-            <Header user={user} />
+            <Header />
             <Heading px={14} py={2}>
                 Doctors
             </Heading>

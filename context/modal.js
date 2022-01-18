@@ -3,15 +3,15 @@ import { useState, createContext } from 'react'
 export const ModalContext = createContext()
 
 export const ModalContextProvider = ({ children }) => {
-    const [open, setOpen] = useState(false)
-    const [show, setShow] = useState(false)
+    const [appointmentModalOpen, setAppointmentModalOpen] = useState(false)
+    const [showMedModal, setShowMedModal] = useState(false)
     const [noteModalOpen, setNoteModalOpen] = useState(false)
 
     const modalState = {
-        open,
-        setOpen,
-        show,
-        setShow,
+        appointmentModalOpen,
+        setAppointmentModalOpen,
+        showMedModal,
+        setShowMedModal,
         noteModalOpen,
         setNoteModalOpen
     }

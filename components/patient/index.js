@@ -1,4 +1,4 @@
-import React from 'react'
+import { useContext } from 'react'
 import { SimpleGrid, Box, GridItem, Heading, Button } from "@chakra-ui/react";
 import Header from "../common/Header";
 import MedicalHistory from './MedicalHistory'
@@ -8,20 +8,29 @@ import Profile from './Profile'
 import Feed from '../messaging/Feed'
 import { medicalHistoryData } from "../../utils/patients";
 import { GrAdd } from "react-icons/gr";
-import { useAuthUser } from '../../context'
+import { useAuthUser, ModalContext, UserIdContext } from '../../context'
+import AddNote from '../doctor/AddNote'
 
 const PatientProfile = ({ user }) => {
     const { authUser } = useAuthUser()
+    const { setNoteModalOpen } = useContext(ModalContext)
+    const { setUserId } = useContext(UserIdContext)
     return (
         <>
             <Header />
+            <AddNote />
             <Box px={20} py={2} display={'flex'} justifyContent={'space-between'} alignItems={'center'}>
                 <Heading >
                     Patient
                 </Heading>
-                <Button size={"md"} leftIcon={<GrAdd />} borderRadius={'full'} colorScheme={'teal'}>
-                    Add Note
-                </Button>
+                {authUser.isDoctor && (
+                    <Button size={"md"} leftIcon={<GrAdd />} borderRadius={'full'} colorScheme={'teal'} onClick={() => {
+                        setUserId(user.id)
+                        setNoteModalOpen(true)
+                    }} >
+                        Add Note
+                    </Button>
+                )}
             </Box>
             <Box px={8} py={14} mx="auto">
                 <SimpleGrid
@@ -37,7 +46,7 @@ const PatientProfile = ({ user }) => {
                     </GridItem>
                     <GridItem colSpan={{ base: "auto", lg: 7 }}>
                         {authUser.isDoctor && <Feed />}
-                        <MedicalHistory data={medicalHistoryData} />
+                        <MedicalHistory data={medicalHistoryData} userId={user.id} />
                     </GridItem>
                 </SimpleGrid>
             </Box>

@@ -1,7 +1,6 @@
-import React from 'react'
 import { useState, useContext } from "react";
 import { UserIdContext, ModalContext } from "../../context";
-import { addDoc, collection, serverTimestamp } from "@firebase/firestore";
+import { addDoc, collection } from "@firebase/firestore";
 import { db } from "../../firebase";
 import { FiEdit3 } from "react-icons/fi";
 import {
@@ -19,25 +18,24 @@ import {
     ModalFooter,
     Select
 } from "@chakra-ui/react";
-import {useAuthUser} from '../../context'
+import { useAuthUser } from '../../context'
 
 const AddNote = () => {
     const [severity, setSeverity] = useState(null);
     const [description, setDescription] = useState(null);
     const [error, setError] = useState(null);
 
-
     const { authUser: user } = useAuthUser()
-    // const { userId } = useContext(UserIdContext);
     const { noteModalOpen, setNoteModalOpen } = useContext(ModalContext);
+    const { userId } = useContext(UserIdContext)
 
     const sanitizedForm = () => {
         return {
-            patientId: user.id, //supposed to be userId
+            patientId: userId, //supposed to be userId
             addedBy: user.firstname,
             severity: severity,
             description: description,
-            date: serverTimestamp()
+            date: new Date().toISOString().slice(0, 10)
         };
     };
 

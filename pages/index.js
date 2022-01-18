@@ -84,7 +84,7 @@ const Landing = () => {
                                   color={"gray.900"}
                                   size="lg"
                                   leftIcon={<RiLoginCircleLine />}
-                                  onClick={() => router.push("/login")}
+                                  onClick={() => router.replace("/login")}
                               >
                                   Login
                               </Button>

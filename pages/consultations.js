@@ -1,9 +1,21 @@
+import { useEffect } from 'react'
 import { SimpleGrid, Box, GridItem } from "@chakra-ui/react";
 import Header from "../components/common/Header";
 import Upcoming from "../components/doctor/Upcoming";
 import Notes from "../components/messaging/Notes";
+import { useAuthUser } from '../context'
+import {useRouter} from 'next/router'
 
 const Consultations = () => {
+    const { authUser, loading } = useAuthUser()
+    const router = useRouter()
+    
+    useEffect(() => {
+        if (!authUser){
+            router.push('/login')
+        }
+    },[authUser, router])
+
     return (
         <>
             <Header />
