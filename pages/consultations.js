@@ -1,18 +1,13 @@
-import React from 'react'
 import { SimpleGrid, Box, GridItem } from "@chakra-ui/react";
-import Header from "../common/Header";
-import Bio from './Bio'
-import DoctorInfo from './DoctorInfo'
-import Contact from './Contact'
-import Appointments from "./Appointments";
-import Feed from '../messaging/Feed'
+import Header from "../components/common/Header";
+import Upcoming from "../components/doctor/Upcoming";
+import Notes from "../components/messaging/Notes";
 
-
-const DoctorProfile = ({ user }) => {
+const Consultations = () => {
     return (
         <>
             <Header />
-            <Box px={8} py={14} mx="auto">
+            <Box px={8} py={8} mx="auto">
                 <SimpleGrid
                     w={{ base: "full", xl: 11 / 12 }}
                     columns={{ base: 1, lg: 11 }}
@@ -20,12 +15,10 @@ const DoctorProfile = ({ user }) => {
                     mx="auto"
                 >
                     <GridItem colSpan={{ base: "auto", md: 4 }}>
-                        <Bio user={user} />
-                        <DoctorInfo user={user} />
-                        <Contact user={user} />
+                        <Notes />
                     </GridItem>
                     <GridItem colSpan={{ base: "auto", lg: 7 }}>
-                        {user.isDoctor ? <Appointments /> : <Feed />}
+                        <Upcoming />
                     </GridItem>
                 </SimpleGrid>
             </Box>
@@ -33,4 +26,4 @@ const DoctorProfile = ({ user }) => {
     );
 };
 
-export default DoctorProfile;
+export default Consultations;

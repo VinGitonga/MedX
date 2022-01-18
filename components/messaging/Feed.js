@@ -1,4 +1,4 @@
-import { Box, SimpleGrid, GridItem, VisuallyHidden, Input, IconButton } from '@chakra-ui/react'
+import { Box, SimpleGrid, GridItem, VisuallyHidden, Input, IconButton, Heading } from '@chakra-ui/react'
 import Card from '../common/Card'
 import Message from './Message'
 import { RiSendPlaneFill } from 'react-icons/ri'
@@ -6,6 +6,9 @@ import { RiSendPlaneFill } from 'react-icons/ri'
 const Feed = () => {
     return (
         <Card>
+             <Heading px={14} py={2}>
+                Chats
+            </Heading>
             <Box h={'70vh'} w={'full'} padding={'24px'} overflowY={'scroll'}>
                 <Message />
                 <Message isSender />

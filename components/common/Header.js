@@ -39,7 +39,6 @@ export default function Header() {
     const mobileNav = useDisclosure();
     const router = useRouter()
     const { logout, authUser: user } = useAuthUser()
-    console.log(user)
 
 
     return (
@@ -90,7 +89,7 @@ export default function Header() {
                                     w="full"
                                     variant="ghost"
                                     leftIcon={<BsChatFill />}
-                                    onClick={() => router.push('/chats')}
+                                    onClick={() => router.push('/consultations')}
                                 >
                                     Chats
                                 </Button>
@@ -122,7 +121,7 @@ export default function Header() {
                                 variant="ghost"
                                 leftIcon={<BsChatFill />}
                                 size="sm"
-                                onClick={() => router.push('/chats')}
+                                onClick={() => router.push('/consultations')}
                             >
                                 Chats
                             </Button>
