@@ -6,13 +6,23 @@ function getUser(id, users) {
     })[0];
 }
 
-function getAge(dob){
-    let from = dob.split('-');
-    let birthdateTimestamp = new Date(from.join('/'))
-    var curr = new Date()
-    var diff = curr - birthdateTimestamp
-    var currAge = Math.floor(diff / 31557600000)
-    return currAge
+function getMessages(messages, authUserId, profileId) {
+    let newMsgs = messages.filter(function (el) {
+        return (
+            (el.senderId == authUserId && el.receiverId == profileId) ||
+            (el.senderId == profileId && el.receiverId == authUserId)
+        );
+    });
+    return newMsgs;
 }
 
-export { getAge, getUser }
+function getAge(dob) {
+    let from = dob.split("-");
+    let birthdateTimestamp = new Date(from.join("/"));
+    var curr = new Date();
+    var diff = curr - birthdateTimestamp;
+    var currAge = Math.floor(diff / 31557600000);
+    return currAge;
+}
+
+export { getAge, getUser, getMessages };

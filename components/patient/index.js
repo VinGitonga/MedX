@@ -45,7 +45,7 @@ const PatientProfile = ({ user }) => {
                         <Medication />
                     </GridItem>
                     <GridItem colSpan={{ base: "auto", lg: 7 }}>
-                        {authUser.isDoctor && <Feed />}
+                        {authUser.isDoctor && <Feed imageURL={user.image} userId={user.id} />}
                         <MedicalHistory data={medicalHistoryData} userId={user.id} />
                     </GridItem>
                 </SimpleGrid>

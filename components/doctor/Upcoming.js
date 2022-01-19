@@ -42,6 +42,7 @@ const Upcoming = () => {
                     );
                 }
             ),
+        // eslint-disable-next-line react-hooks/exhaustive-deps
         [db]
     );
 
@@ -96,12 +97,13 @@ const UpcomingItem = ({ data, userData }) => {
             <Flex alignItems={"center"} justifyContent={"space-between"}>
                 <Flex alignItems={"center"}>
                     <Avatar size={"lg"} mr={5} src={userData?.image} />
-                    <Link href={"/myprofile"}>
+                    <Link href={`/userprofile?userId=${userData.id}`}>
                         <Text
                             fontSize={"xl"}
                             _hover={{
                                 borderBottom: "2px solid #4299e1",
                             }}
+                            cursor={"pointer"}
                         >
                             {userData?.isDoctor && "Dr."} {userData?.firstname}{" "}
                             {userData?.lastname}
