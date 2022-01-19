@@ -18,7 +18,7 @@ const DoctorInfo = ({user}) => {
                 </Box>
                 <Box>
                     <Text color={'gray.400'} fontWeight={600} fontSize="sm" textTransform={'uppercase'}>Speciality</Text>
-                    <Text color={'gray.900'} fontSize={'md'}>{user.doctorInfo.speciality}</Text>
+                    <Text color={'gray.900'} fontSize={'md'}>{user?.doctorInfo?.speciality}</Text>
                 </Box>
                 <Box>
                     <Text color={'gray.400'} fontWeight={600} fontSize="sm" textTransform={'uppercase'}>Education</Text>
@@ -26,7 +26,7 @@ const DoctorInfo = ({user}) => {
                 </Box>
                 <Box>
                     <Text color={'gray.400'} fontWeight={600} fontSize="sm" textTransform={'uppercase'}>Years of Experience</Text>
-                    <Text color={'gray.900'} fontSize={'md'}>{user.doctorInfo.yearsOfExperience}</Text>
+                    <Text color={'gray.900'} fontSize={'md'}>{user?.doctorInfo?.yearsOfExperience}</Text>
                 </Box>
                 <Box>
                     <Text color={'gray.400'} fontWeight={600} fontSize="sm" textTransform={'uppercase'}>Languages</Text>

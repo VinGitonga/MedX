@@ -1,25 +1,28 @@
-import { createContext, useState, useEffect, useMemo } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { onAuthStateChanged, signOut } from "@firebase/auth";
-import { auth } from "../firebase";
+import { auth, db } from "../firebase";
+/**
+ * 
+ * Custom Hook for authentication
+ * @returns current user, logout method, loading state and associated error
+ */
 
-export const AuthContext = createContext({});
-
-export const AuthContextProvider = ({ children }) => {
+export default function useAuth(){
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
 
     useEffect(
-        () =>
-            onAuthStateChanged(auth, (user) => {
+        () =>{
+            const unsub = onAuthStateChanged(auth, (user) => {
                 if (user) {
                     setUser(user);
                 } else {
                     setUser(null);
                 }
-            }),
-        []
-    );
+            })
+            return unsub
+        },[db]);
 
     const logout = async () => {
         /**
@@ -44,9 +47,5 @@ export const AuthContextProvider = ({ children }) => {
         [user, loading, error]
     );
 
-    return (
-        <AuthContext.Provider value={memoedValue}>
-            {children}
-        </AuthContext.Provider>
-    );
-};
+    return memoedValue;
+}

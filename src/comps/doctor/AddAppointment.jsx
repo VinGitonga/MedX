@@ -17,15 +17,16 @@ import {
     ModalBody,
     ModalFooter,
 } from "@chakra-ui/react";
+import useAuth from '../../hooks/use-auth'
 
 const AddAppointment = () => {
     const [date, setDate] = useState(null);
     const [time, setTime] = useState(null);
     const [error, setError] = useState(null);
 
-    const { user } = useContext(AuthContext);
+    const { user } = useAuth()
     const { userId } = useContext(UserIdContext);
-    const { open, setOpen } = useContext(ModalContext);
+    const { show, setShow } = useContext(ModalContext);
 
     const sanitizedForm = () => {
         return {
@@ -48,13 +49,13 @@ const AddAppointment = () => {
             if (!error) {
                 // do firebase add docs
                 await addDoc(collection(db, "appointments"), sanitizedForm());
-                setOpen(false);
+                setShow(false);
             }
         }
     };
 
     return (
-        <Modal isOpen={open} onClose={setOpen} closeOnOverlayClick={false}>
+        <Modal isOpen={show} onClose={setShow} closeOnOverlayClick={false}>
             <ModalOverlay />
             <ModalContent>
                 <ModalHeader>Add an Appointment</ModalHeader>
@@ -99,7 +100,7 @@ const AddAppointment = () => {
                     </SimpleGrid>
                 </ModalBody>
                 <ModalFooter>
-                    <Button onClick={() => setOpen(false)}>Cancel</Button>
+                    <Button onClick={() => setShow(false)}>Cancel</Button>
                 </ModalFooter>
             </ModalContent>
         </Modal>

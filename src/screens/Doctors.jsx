@@ -26,7 +26,7 @@ const Doctors = () => {
             <Box px={14} py={14} mx="auto">
                 <Card>
                     {doctors.map((doctor) => (
-                        <DoctorItem data={doctor} key={doctor.id} />
+                        <DoctorItem data={doctor.data} id={doctor.id} key={doctor.id} />
                     ))}
                 </Card>
             </Box>
@@ -34,7 +34,7 @@ const Doctors = () => {
     );
 };
 
-const DoctorItem = ({ data }) => (
+const DoctorItem = ({ data, id }) => (
     <Box mb={6}>
         <Flex alignItems={"center"} justifyContent={"space-between"}>
             <Flex alignItems={"center"}>
@@ -43,7 +43,7 @@ const DoctorItem = ({ data }) => (
                     mr={5}
                     src={data.image}
                 />
-                <Link to={`/profile/${data.id}`}>
+                <Link to={`/profile/${id}`}>
                     <Text
                         fontSize={"3xl"}
                         _hover={{
@@ -55,7 +55,7 @@ const DoctorItem = ({ data }) => (
                 </Link>
             </Flex>
             <Tag display={{ base: 'none', lg: 'flex' }} bg={"teal.400"} variant="subtle" size="lg" borderRadius={"full"}>
-                {data.doctorInfo.speciality}
+                {data?.doctorInfo?.speciality}
             </Tag>
             <IconButton
                 size={"md"}

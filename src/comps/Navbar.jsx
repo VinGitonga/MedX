@@ -29,15 +29,16 @@ import {
 import { BsChatFill } from "react-icons/bs";
 import { MdStorm } from 'react-icons/md'
 import { RiStethoscopeFill, RiUserHeartFill, RiLogoutCircleFill, RiUserFollowFill } from 'react-icons/ri'
-import { Fragment, useContext } from 'react'
+import { Fragment } from 'react'
 import { useHistory } from 'react-router-dom'
-import { AuthContext } from '../context'
+import useAuth from '../hooks/use-auth'
+import useProfile from '../hooks/useProfile'
 
 export default function Navbar() {
     const bg = useColorModeValue("white", "gray.800");
     const mobileNav = useDisclosure();
     const history = useHistory()
-    const { user } = useContext(AuthContext)
+    const { logout, user } = useAuth()
 
 
     return (
@@ -95,10 +96,10 @@ export default function Navbar() {
                                 <Button
                                     w="full"
                                     variant="ghost"
-                                    leftIcon={user.data.isDoctor ? <RiStethoscopeFill /> : <RiUserFollowFill />}
-                                    onClick={() => history.push(user.data.isDoctor ? '/patients' : '/doctors')}
+                                    leftIcon={user.isDoctor ? <RiStethoscopeFill /> : <RiUserFollowFill />}
+                                    onClick={() => history.push(user.isDoctor ? '/patients' : '/doctors')}
                                 >
-                                    {user.data.isDoctor ? 'Patients' : 'Doctors'}
+                                    {user.isDoctor ? 'Patients' : 'Doctors'}
                                 </Button>
                             </VStack>
                         </Box>
@@ -127,10 +128,10 @@ export default function Navbar() {
                             <Button
                                 w="full"
                                 variant="ghost"
-                                leftIcon={user.data.isDoctor ? <RiStethoscopeFill /> : <RiUserFollowFill />}
-                                onClick={() => history.push(user.data.isDoctor ? '/patients' : '/doctors')}
+                                leftIcon={user.isDoctor ? <RiStethoscopeFill /> : <RiUserFollowFill />}
+                                onClick={() => history.push(user.isDoctor ? '/patients' : '/doctors')}
                             >
-                                {user.data.isDoctor ? 'Patients' : 'Doctors'}
+                                {user.isDoctor ? 'Patients' : 'Doctors'}
                             </Button>
                         </HStack>
                     </HStack>
@@ -160,17 +161,16 @@ export default function Navbar() {
                             <MenuButton
                                 as={Avatar}
                                 size="sm"
-                                name={user.data.firstname}
-                                src={user.data.image}
+                                name={user.firstname}
+                                src={user.image}
                             />
                             <MenuList>
                                 <MenuItem icon={<RiUserHeartFill />} onClick={() => history.push('/myprofile')}>
                                     My Profile
                                 </MenuItem>
-                                <MenuItem icon={<RiLogoutCircleFill />}>
+                                <MenuItem icon={<RiLogoutCircleFill />} onClick={() => logout()}>
                                     Logout
                                 </MenuItem>
-
                             </MenuList>
                         </Menu>
                     </HStack>

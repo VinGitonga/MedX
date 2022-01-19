@@ -8,18 +8,41 @@ import {
     Profile,
 } from "../comps/patient";
 import { medicalHistoryData } from "../data/patients";
-import { AuthContext } from "../context";
-import { useContext } from 'react'
+// import useAppointments from '../hooks/use-appointments'
+import { useEffect, useState } from 'react'
+import useAuth from '../hooks/use-auth'
+import { onSnapshot, doc} from '@firebase/firestore'
+import { db } from '../firebase'
 
 
 
 
 const MyProfile = () => {
-    const { user } = useContext(AuthContext);
+    const { user } = useAuth();
+    const [userData, setUserData] = useState({})
+    const [loading, setLoading] = useState(false)
+    console.log(user)
+
+    // const { appointments } = useAppointments()
+
+
+    useEffect(
+        () =>
+            onSnapshot(doc(db, "users", user.uid), (snapshot) => {
+                setLoading(true)
+                setUserData({
+                    id: snapshot.id,
+                    ...snapshot.data(),
+                });
+                setLoading(false)
+            }),
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+        [db]
+    );
 
     const doctor = ({ user }) => (
         <>
-            <Navbar />
+            {/* <Navbar /> */}
             <Box px={8} py={14} mx="auto">
                 <SimpleGrid
                     w={{ base: "full", xl: 11 / 12 }}
@@ -28,9 +51,9 @@ const MyProfile = () => {
                     mx="auto"
                 >
                     <GridItem colSpan={{ base: "auto", md: 4 }}>
-                        <Bio user={user.data} />
-                        <DoctorInfo user={user.data} />
-                        <Contact user={user.data} />
+                        <Bio user={user} />
+                        <DoctorInfo user={user} />
+                        <Contact user={user} />
                     </GridItem>
                     <GridItem colSpan={{ base: "auto", lg: 7 }}>
                         <Upcoming />
@@ -42,7 +65,7 @@ const MyProfile = () => {
 
     const patient = ({ user }) => (
         <>
-            <Navbar />
+            {/* <Navbar /> */}
             <Box px={8} py={14} mx="auto">
                 <SimpleGrid
                     w={{ base: "full", xl: 11 / 12 }}
@@ -62,8 +85,13 @@ const MyProfile = () => {
             </Box>
         </>
     );
+    console.log(userData)
 
-    return user.isDoctor ? doctor({ user }) : patient({ user });
+    return loading ? 'Loading' : (
+        <>
+        { userData.isDoctor ? doctor({ userData }) : patient({ userData }) }
+        </>
+    )
 };
 
 export default MyProfile;

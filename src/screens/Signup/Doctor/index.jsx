@@ -6,10 +6,10 @@ import StepThree from "../StepThree";
 import StepTwo from "../StepTwo";
 import StepFour from "./StepFour";
 import { MessageContext } from "../../../context";
-import { getAuth, createUserWithEmailAndPassword } from '@firebase/auth'
-import { addDoc, collection, doc, serverTimestamp, updateDoc } from '@firebase/firestore'
+import { createUserWithEmailAndPassword } from '@firebase/auth'
+import { setDoc, doc, serverTimestamp, updateDoc } from '@firebase/firestore'
 import { ref, getDownloadURL, uploadString } from '@firebase/storage'
-import { db, storage, app } from '../../../firebase'
+import { db, storage, auth } from '../../../firebase'
 import { useHistory } from "react-router-dom";
 
 const Doctor = () => {
@@ -224,11 +224,12 @@ const Doctor = () => {
             if (!flashMessage) {
                 // signup here using firebase
                 // console.log(sanitizedForm());
-                const auth = getAuth(app);
                 createUserWithEmailAndPassword(auth, sanitizedForm().email, formState.password)
                     .then(async userCredential => {
                         console.log('worked')
-                        const docRef = await addDoc(collection(db, 'users'), sanitizedForm());
+                        const docRef = doc(db, "users", userCredential
+                            .user.uid)
+                        setDoc(docRef, sanitizedForm())
                         const imageRef = ref(storage, `users/${docRef.id}/image`);
 
                         await uploadString(imageRef, formState.image, "data_url").then(async snapshot => {

@@ -19,9 +19,9 @@ const DoctorProfile = ({user}) => {
                     mx="auto"
                 >
                     <GridItem colSpan={{ base: "auto", md: 4 }}>
-                        <Bio />
-                        <DoctorInfo />
-                        <Contact />
+                        <Bio user={user} />
+                        <DoctorInfo user={user} />
+                        <Contact user={user} />
                     </GridItem>
                     <GridItem colSpan={{ base: "auto", lg: 7 }}>
                         <Upcoming />

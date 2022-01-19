@@ -32,7 +32,7 @@ const Bio = ({ user }) => {
                     </Box>
                     <Box mx={2}>
                         <Text color={'gray.400'} fontWeight={600} fontSizee='sm' textTransform={'uppercase'}>Age</Text>
-                        <Text color={'gray.900'} fontSize={'md'}>{user.age}</Text>
+                        <Text color={'gray.900'} fontSize={'md'}>34</Text>
                     </Box>
                 </SimpleGrid>
             </Box>

@@ -11,11 +11,16 @@ import { upcomingConsultation } from '../../data/patients'
 import Card from '../patient/Card'
 import { GrAdd } from 'react-icons/gr'
 import { useContext } from 'react'
-import { AuthContext, ModalContext } from '../../context'
+import { ModalContext } from '../../context'
+import useProfile from '../../hooks/useProfile'
+/**
+ * Returns the upcoming consultations for doctor
+ * 
+ */
 
 const Upcoming = () => {
-    const { user } = useContext(AuthContext)
-    const { setOpen } = useContext(ModalContext)
+    const { setShow } = useContext(ModalContext)
+    const { userData: user } = useProfile()
     return (
         <Card>
             <Flex justify={'space-between'}>
@@ -25,8 +30,8 @@ const Upcoming = () => {
                     aria-label={"type"}
                     icon={<GrAdd />}
                     isRound
-                    onClick={() => setOpen(true)}
-                    disabled={user.data.isDoctor ? true : false}
+                    onClick={() => setShow(true)}
+                    disabled={user.isDoctor ? true : false}
                     bg={'gray.300'}
                 />
             </Flex>
@@ -34,6 +39,19 @@ const Upcoming = () => {
                 {upcomingConsultation.map((info, index) => (
                     <UpcomingItem data={info} key={index} />
                 ))}
+                {/* {user.data.isDoctor ? (
+                    <>
+                    {appointments.map((info, index) => (
+                        <UpcomingItem data={info} key={index} />
+                    ))}
+                    </>
+                ) : (
+                    <>
+                    {upcomingConsultation.map((info, index) => (
+                        <UpcomingItem data={info} key={index} />
+                    ))}
+                    </>
+                )} */}
             </Box>
         </Card>
     )
@@ -47,24 +65,24 @@ const UpcomingItem = ({ data }) => {
                     <Avatar
                         size={'lg'}
                         mr={5}
-                        src={data.imageUrl}
+                        src={data.image}
                     />
-                    <Link to={'/patient'}>
+                    <Link to={`/profile/${data.userId}`}>
                         <Text
                             fontSize={'xl'}
                             _hover={{
                                 borderBottom: '2px solid #4299e1'
                             }}
                         >
-                            {data.name}
+                            {data.firstname} {data.lastname} {data?.name}
                         </Text>
                     </Link>
                 </Flex>
                 <Text>
-                    {data.date}
+                    {data.appointmentDate}
                 </Text>
                 <Text>
-                    {data.time}
+                    {data.appointmentTime}
                 </Text>
             </Flex>
             <br />

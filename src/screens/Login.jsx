@@ -16,9 +16,8 @@ import { RiLoginCircleLine } from "react-icons/ri";
 import { GiPadlockOpen } from "react-icons/gi";
 import { useHistory } from "react-router-dom";
 import { MessageContext } from '../context'
-import { getAuth, signInWithEmailAndPassword } from '@firebase/auth'
-import { app, db } from '../firebase'
-import { collection, query, where, getDocs } from "firebase/firestore";
+import { signInWithEmailAndPassword } from '@firebase/auth'
+import { auth } from '../firebase'
 
 
 const Login = () => {
@@ -37,7 +36,7 @@ const Login = () => {
         });
     }
 
-    const clickSubmit = e => {
+    const clickSubmit = async e => {
         e.preventDefault()
         const emailRegex = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/;
 
@@ -63,13 +62,13 @@ const Login = () => {
             });
         } else {
             if (!flashMessage) {
-                const auth = getAuth(app);
                 console.log('am here')
-                signInWithEmailAndPassword(auth, formState.email, formState.password)
+                await signInWithEmailAndPassword(auth, formState.email, formState.password)
                     .then(async userCred => {
                         // setLoading to false and push user to other page
+                        console.log(userCred)
                         history.push('/myprofile')
-                    }).catch(err => console.log(err.message))
+                    }).catch(err => console.log("This is err", err.message))
             }
         }
     }

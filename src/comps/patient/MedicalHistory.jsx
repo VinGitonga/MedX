@@ -16,10 +16,12 @@ import {
 import { FiEdit3 } from "react-icons/fi";
 import { GrAdd } from "react-icons/gr";
 import { useContext } from 'react'
-import { ModalContext, AuthContext } from '../../context'
+import { ModalContext } from '../../context'
+import useAuth from '../../hooks/use-auth'
 
 const MedicalHistory = ({ data }) => {
-    const { user } = useContext(AuthContext)
+    const { user } = useAuth()
+    console.log(user)
     const { setOpen } = useContext(ModalContext)
     return (
         <Card>
@@ -39,7 +41,7 @@ const MedicalHistory = ({ data }) => {
                         icon={<GrAdd />}
                         isRound
                         onClick={() => setOpen(true)}
-                        disabled={user.data.isDoctor ? false : true}
+                        disabled={user.isDoctor ? false : true}
                         bg={'gray.300'}
                     />
                 </HStack>

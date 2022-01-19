@@ -4,13 +4,13 @@ export const ModalContext = createContext()
 
 export const ModalContextProvider = ({ children }) => {
     const [open, setOpen] = useState(false)
-    const [userId, setUserId] = useState(null)
+    const [show, setShow] = useState(false)
 
     const modalState = {
         open,
         setOpen,
-        userId,
-        setUserId
+        show,
+        setShow
     }
 
     return (
