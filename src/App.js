@@ -32,8 +32,8 @@ function App() {
                 <PrivateRoute exact path="/myprofile" component={MyProfile} />
                 <PrivateRoute exact path="/userprofile/:userId" component={UserProfile} />
                 <PrivateRoute exact path="/consultations" component={Consultations} />
-                <Route exact path="/doctor/register" component={DoctorRegister} />
-                <Route exact path="/patient/register" component={PatientRegister} />
+                <Route exact path="/register/doctor" component={DoctorRegister} />
+                <Route exact path="/register/patient" component={PatientRegister} />
             </Switch>
         </Router>
     );

@@ -35,49 +35,23 @@ export const medicalHistoryData = [
     {
         date: '14/11/2021',
         doctor:'Dr Riley Davis',
-        tags: [
-            {
-                tag:'Stomach Ache',
-            },
-            {
-                tag:'Fever',
-            },
-            {
-                tag:'Headache',
-            },
-        ],
-        note:'These are some common types of stomach ache and what may be causing them. Most stomach aches are not anything serious and will go away after a few days.'
+        tags: ["Headache", "Fever", "Stomach Ache"],
+        description:'These are some common types of stomach ache and what may be causing them. Most stomach aches are not anything serious and will go away after a few days.'
     },
     {
         date: '21/03/2021',
         doctor:'Dr Smith',
-        tags: [
-            {
-                tag:'Muscle',
-            },
-            {
-                tag:'Chest',
-            },
-            {
-                tag:'Cancer',
-            },
-        ],
-        note:"The symptoms are unpredictable. Some people's symptoms develop and worsen steadily over appointmentTime, while for others they come and go.Periods when symptoms get worse are known as relapses. Periods when symptoms improve or disappear are known as remissions.",
+        tags: ["Muscle", "Cancer", "Chest"],
+        description:"The symptoms are unpredictable. Some people's symptoms develop and worsen steadily over appointmentTime, while for others they come and go.Periods when symptoms get worse are known as relapses. Periods when symptoms improve or disappear are known as remissions.",
     },
     {
         date: '14/11/2021',
         doctor:'Dr Paul Jekins',
-        tags: [
-            {
-                tag:'Cold sore',
-            },
-            {
-                tag:'Chest Infection',
-            },
-        ],
-        note:'A cold sore usually starts with a tingling, itching or burning feeling.Cold sores should start to heal within 10 days, but are contagious and may be irritating or painful while they heal. Recommended creams to ease pain and irritation, antiviral creams to speed up healing appointmentTime',
+        tags:["Cold Sore", "Chest Infection"],
+        description:'A cold sore usually starts with a tingling, itching or burning feeling.Cold sores should start to heal within 10 days, but are contagious and may be irritating or painful while they heal. Recommended creams to ease pain and irritation, antiviral creams to speed up healing appointmentTime',
     },
 ]
+
 
 export const upcomingConsultation = [
     {
