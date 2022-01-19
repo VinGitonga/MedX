@@ -1,8 +1,7 @@
 /* eslint-disable @next/next/link-passhref */
-import React from "react";
 import { Box, Flex, Text, Avatar, Heading, IconButton } from "@chakra-ui/react";
 import Link from "next/link";
-import { upcomingConsultation } from "../../utils/patients";
+// import { upcomingConsultation } from "../../utils/patients";
 import Card from "../common/Card";
 import { GrAdd } from "react-icons/gr";
 import { useState, useEffect } from "react";
@@ -11,51 +10,34 @@ import {
     collection,
     query,
     where,
-    doc,
-    getDoc,
     getDocs,
 } from "@firebase/firestore";
 import { db } from "../../firebase";
 import { useAuthUser } from "../../context";
+import { getUser } from '../../utils/utils'
 
-function getUser(id, users) {
-    return users.filter(function (obj){
-        if (obj.id == id){
-            return obj
-        }
-    })[0]
-}
 
 /**
  * Returns the upcoming consultations for doctor
- *
  */
 
 const Upcoming = () => {
     const [appointments, setAppointments] = useState([]);
-    const [users, setUsers] = useState([])
+    const [users, setUsers] = useState([]);
     const { authUser } = useAuthUser();
-
-    const someDoc = async (id) => {
-        const docRef = doc(db, "users", id);
-        const docSnap = await getDoc(docRef);
-        const docInfo = docSnap.data();
-        return docInfo;
-    };
 
     useEffect(
         () =>
             onSnapshot(
                 query(
                     collection(db, "appointments"),
-                    where("patientId", "==", authUser.id)
+                    where(authUser.isDoctor ? "doctorId" : "patientId", "==", authUser.id)
                 ),
                 (snapshot) => {
                     setAppointments(
                         snapshot.docs.map((doc1) => ({
                             id: doc1.id,
                             ...doc1.data(),
-                            
                         }))
                     );
                 }
@@ -65,20 +47,16 @@ const Upcoming = () => {
 
     useEffect(() => {
         const fetch = async () => {
-            const allusers = await getDocs(collection(db, "users"))
+            const allusers = await getDocs(collection(db, "users"));
             setUsers(
-                allusers.docs.map((doc1)=> ({
+                allusers.docs.map((doc1) => ({
                     id: doc1.id,
-                    ...doc1.data()
+                    ...doc1.data(),
                 }))
-            ) 
-        }
-        fetch()
-    }, [])
-
-    console.log(appointments);
-    console.log(users);
-    console.log(getUser("QfEC1KFwh8NxGvzIuls4HeEw7dm2", users))
+            );
+        };
+        fetch();
+    }, []);
 
     return (
         <Card>
@@ -94,7 +72,16 @@ const Upcoming = () => {
             </Flex>
             <Box px={7} py={14}>
                 {appointments.length > 0 ? (
-                    appointments.map((info) => <UpcomingItem data={info} userData={getUser(info?.doctorId, users)} key={info.id} />)
+                    appointments.map((info) => (
+                        <UpcomingItem
+                            data={info}
+                            userData={getUser(
+                                authUser.isDoctor ? info?.patientId : info?.doctorId,
+                                users
+                            )}
+                            key={info.id}
+                        />
+                    ))
                 ) : (
                     <Text>No appointments yet</Text>
                 )}
@@ -116,7 +103,8 @@ const UpcomingItem = ({ data, userData }) => {
                                 borderBottom: "2px solid #4299e1",
                             }}
                         >
-                            Dr. {userData?.firstname} {userData?.lastname} {data?.name}
+                            {userData?.isDoctor && "Dr."} {userData?.firstname}{" "}
+                            {userData?.lastname}
                         </Text>
                     </Link>
                 </Flex>

@@ -1,6 +1,7 @@
 import React from 'react'
 import { Heading, Flex, Avatar, Box, Text, SimpleGrid } from "@chakra-ui/react";
 import Card from "../common/Card";
+import { getAge } from '../../utils/utils'
 
 const Bio = ({ user }) => {
     return (
@@ -33,7 +34,7 @@ const Bio = ({ user }) => {
                     </Box>
                     <Box mx={2}>
                         <Text color={'gray.400'} fontWeight={600} fontSize='sm' textTransform={'uppercase'}>Age</Text>
-                        <Text color={'gray.900'} fontSize={'md'}>34</Text>
+                        <Text color={'gray.900'} fontSize={'md'}>{getAge(user.dob)}</Text>
                     </Box>
                 </SimpleGrid>
             </Box>

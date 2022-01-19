@@ -21,7 +21,7 @@ const PatientProfile = ({ user }) => {
             <AddNote />
             <Box px={20} py={2} display={'flex'} justifyContent={'space-between'} alignItems={'center'}>
                 <Heading >
-                    Patient
+                    {authUser.isDoctor ? 'Patient' : 'My Profile'}
                 </Heading>
                 {authUser.isDoctor && (
                     <Button size={"md"} leftIcon={<GrAdd />} borderRadius={'full'} colorScheme={'teal'} onClick={() => {

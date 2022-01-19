@@ -4,7 +4,7 @@ import Header from "../common/Header";
 import Bio from './Bio'
 import DoctorInfo from './DoctorInfo'
 import Contact from './Contact'
-import Appointments from "./Appointments";
+import Upcoming from "./Upcoming";
 import Feed from '../messaging/Feed'
 import { GrAdd } from 'react-icons/gr'
 import { useAuthUser, UserIdContext, ModalContext } from '../../context'
@@ -21,7 +21,7 @@ const DoctorProfile = ({ user }) => {
             <AddAppointment />
             <Box px={20} py={2} display={'flex'} justifyContent={'space-between'} alignItems={'center'}>
                 <Heading >
-                    Doctor
+                    {authUser.isDoctor ? 'My Profile' : 'Doctor'}
                 </Heading>
                 {authUser.isDoctor === false && (
                     <Button size={"md"} leftIcon={<GrAdd />} borderRadius={'full'} colorScheme={'teal'} onClick={() => {
@@ -45,7 +45,7 @@ const DoctorProfile = ({ user }) => {
                         <Contact user={user} />
                     </GridItem>
                     <GridItem colSpan={{ base: "auto", lg: 7 }}>
-                        {authUser.isDoctor ? <Appointments /> : <Feed />}
+                        {authUser.isDoctor ? <Upcoming /> : <Feed />}
                     </GridItem>
                 </SimpleGrid>
             </Box>

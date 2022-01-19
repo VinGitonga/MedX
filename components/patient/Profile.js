@@ -8,6 +8,8 @@ import {
     Avatar
 } from "@chakra-ui/react";
 import Card from "../common/Card";
+import { getAge } from '../../utils/utils'
+
 
 const Profile = ({user}) => {
     return (
@@ -32,7 +34,7 @@ const Profile = ({user}) => {
                     </Box>
                     <Box>
                         <Text color={'gray.400'} fontWeight={600} fontSize="sm" textTransform={'uppercase'}>Age</Text>
-                        <Text color={'gray.900'} fontSize={'md'}>{user.age}</Text>
+                        <Text color={'gray.900'} fontSize={'md'}>{getAge(user.dob)}</Text>
                     </Box>
                     <Box>
                         <Text color={'gray.400'} fontWeight={600} fontSize="sm" textTransform={'uppercase'}>Weight</Text>
