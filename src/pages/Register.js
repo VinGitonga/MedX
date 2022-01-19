@@ -8,7 +8,7 @@ import {
     Icon,
 } from "@chakra-ui/react";
 import { RiUserSettingsFill } from "react-icons/ri";
-import StepZero from '../../components/register/StepZero'
+import StepZero from '../components/register/StepZero'
 
 
 const Register = () => {

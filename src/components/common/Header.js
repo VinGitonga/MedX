@@ -31,13 +31,13 @@ import { BsChatFill } from "react-icons/bs";
 import { MdStorm } from 'react-icons/md'
 import { RiStethoscopeFill, RiUserHeartFill, RiLogoutCircleFill, RiUserFollowFill } from 'react-icons/ri'
 import { Fragment } from 'react'
-import { useRouter } from 'next/router'
+import { useHistory } from 'react-router-dom'
 import { useAuthUser } from '../../context'
 
 export default function Header() {
     const bg = useColorModeValue("white", "gray.800");
     const mobileNav = useDisclosure();
-    const router = useRouter()
+    const history = useHistory()
     const { logout, authUser: user } = useAuthUser()
 
 
@@ -89,7 +89,7 @@ export default function Header() {
                                     w="full"
                                     variant="ghost"
                                     leftIcon={<BsChatFill />}
-                                    onClick={() => router.push('/consultations')}
+                                    onClick={() => history.push('/consultations')}
                                 >
                                     Chats
                                 </Button>
@@ -97,7 +97,7 @@ export default function Header() {
                                     w="full"
                                     variant="ghost"
                                     leftIcon={user?.isDoctor ? <RiStethoscopeFill /> : <RiUserFollowFill />}
-                                    onClick={() => router.push(user?.isDoctor ? '/patients' : '/doctors')}
+                                    onClick={() => history.push(user?.isDoctor ? '/patients' : '/doctors')}
                                 >
                                     {user?.isDoctor ? 'Patients' : 'Doctors'}
                                 </Button>
@@ -121,7 +121,7 @@ export default function Header() {
                                 variant="ghost"
                                 leftIcon={<BsChatFill />}
                                 size="sm"
-                                onClick={() => router.push('/consultations')}
+                                onClick={() => history.push('/consultations')}
                             >
                                 Chats
                             </Button>
@@ -129,7 +129,7 @@ export default function Header() {
                                 w="full"
                                 variant="ghost"
                                 leftIcon={user?.isDoctor ? <RiStethoscopeFill /> : <RiUserFollowFill />}
-                                onClick={() => router.push(user?.isDoctor ? '/patients' : '/doctors')}
+                                onClick={() => history.push(user?.isDoctor ? '/patients' : '/doctors')}
                             >
                                 {user?.isDoctor ? 'Patients' : 'Doctors'}
                             </Button>
@@ -166,7 +166,7 @@ export default function Header() {
                                 src={user?.image}
                             />
                             <MenuList>
-                                <MenuItem icon={<RiUserHeartFill />} onClick={() => router.push('/myprofile')}>
+                                <MenuItem icon={<RiUserHeartFill />} onClick={() => history.push('/myprofile')}>
                                     My Profile
                                 </MenuItem>
                                 <MenuItem icon={<RiLogoutCircleFill />} onClick={() => logout()}>

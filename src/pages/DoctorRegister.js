@@ -1,11 +1,11 @@
 import React from 'react'
 import { Button, Flex } from "@chakra-ui/react";
 import { useState, useContext, useRef } from "react";
-import Wrapper from "../components/signup/Wrapper";
-import StepOne from "../components/signup/StepOne";
-import StepThree from "../components/signup/StepThree";
-import StepTwo from "../components/signup/StepTwo";
-import StepFour from "../components/signup/StepFourDoc";
+import Wrapper from "../components/register/Wrapper";
+import StepOne from "../components/register/StepOne";
+import StepThree from "../components/register/StepThree";
+import StepTwo from "../components/register/StepTwo";
+import StepFour from "../components/register/StepFourDoc";
 import { MessageContext } from "../context";
 import { createUserWithEmailAndPassword } from '@firebase/auth'
 import { setDoc, doc, serverTimestamp, updateDoc } from '@firebase/firestore'

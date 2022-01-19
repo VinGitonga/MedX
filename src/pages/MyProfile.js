@@ -10,6 +10,7 @@ const MyProfile = () => {
     const history = useHistory()
     // const { isAuthenticated } = useAuth();
     const { loading, authUser } = useAuthUser()
+    console.log(authUser)
 
 
     useEffect(() => {

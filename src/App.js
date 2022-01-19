@@ -8,7 +8,7 @@ import Doctors from "./pages/Doctors";
 import MyProfile from "./pages/MyProfile";
 import UserProfile from "./pages/UserProfile";
 import Consultations from "./pages/Consultations";
-import FlashMessage from "./comps/FlashMessage";
+import FlashMessage from "./components/common/FlashMessage";
 import AddMedicalHistory from './components/patient/AddMedicalHistory'
 import AddAppointment from './components/doctor/AddAppointment'
 import AddNote from './components/doctor/AddNote'

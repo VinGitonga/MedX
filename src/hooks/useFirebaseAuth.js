@@ -7,12 +7,10 @@ import {
     signOut
 } from "@firebase/auth";
 import { db, auth } from "../firebase";
-import { useHistory } from 'react-router-dom'
 
 export default function useFirebaseAuth() {
     const [authUser, setAuthUser] = useState(null);
     const [loading, setLoading] = useState(true);
-    const history = useHistory()
 
     const authStateChanged = async (authState) => {
         if (!authState) {
@@ -42,7 +40,7 @@ export default function useFirebaseAuth() {
             setAuthUser(null)
             setLoading(true)
             sessionStorage.removeItem('userInfo')
-            history.push('/')
+            document.location.href = '/login'
         })
     };
 
