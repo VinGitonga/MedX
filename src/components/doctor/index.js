@@ -8,7 +8,6 @@ import Upcoming from "./Upcoming";
 import Feed from '../messaging/Feed'
 import { GrAdd } from 'react-icons/gr'
 import { useAuthUser, UserIdContext, ModalContext } from '../../context'
-import AddAppointment from './AddAppointment'
 
 
 const DoctorProfile = ({ user }) => {
@@ -18,7 +17,6 @@ const DoctorProfile = ({ user }) => {
     return (
         <>
             <Header />
-            <AddAppointment />
             <Box px={20} py={2} display={'flex'} justifyContent={'space-between'} alignItems={'center'}>
                 <Heading >
                     {authUser.isDoctor ? 'My Profile' : 'Doctor'}

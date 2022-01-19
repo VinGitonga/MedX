@@ -9,7 +9,6 @@ import Feed from '../messaging/Feed'
 import { medicalHistoryData } from "../../utils/patients";
 import { GrAdd } from "react-icons/gr";
 import { useAuthUser, ModalContext, UserIdContext } from '../../context'
-import AddNote from '../doctor/AddNote'
 
 const PatientProfile = ({ user }) => {
     const { authUser } = useAuthUser()
@@ -18,7 +17,6 @@ const PatientProfile = ({ user }) => {
     return (
         <>
             <Header />
-            <AddNote />
             <Box px={20} py={2} display={'flex'} justifyContent={'space-between'} alignItems={'center'}>
                 <Heading >
                     {authUser.isDoctor ? 'Patient' : 'My Profile'}

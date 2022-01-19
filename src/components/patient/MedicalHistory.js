@@ -17,7 +17,6 @@ import { FiEdit3 } from "react-icons/fi";
 import { GrAdd } from "react-icons/gr";
 import { useContext, useEffect, useState } from "react";
 import { ModalContext, useAuthUser, UserIdContext } from "../../context";
-import AddMedicalHistory from "./AddMedicalHistory";
 import { onSnapshot, collection, query, where } from "@firebase/firestore";
 import { db } from "../../firebase";
 
@@ -49,7 +48,6 @@ const MedicalHistory = ({ data, userId }) => {
 
     return (
         <Card>
-            <AddMedicalHistory />
             <Flex justifyContent={"space-between"} alignItems={"center"} mb={6}>
                 <Heading>Medical History</Heading>
                 <HStack>

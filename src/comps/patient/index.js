@@ -1,5 +1,0 @@
-export { default as Profile } from './Profile'
-export { default as Allergies } from './Allergies'
-export { default as Medication } from './Medication'
-export { default as MedicalHistory } from './MedicalHistory'
-export { default as Card } from './Card'
