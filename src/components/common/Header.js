@@ -1,4 +1,3 @@
-import React from 'react'
 import {
     chakra,
     Box,
@@ -19,7 +18,7 @@ import {
     Menu,
     MenuButton,
     MenuItem,
-    MenuList
+    MenuList,
 } from "@chakra-ui/react";
 import {
     AiOutlineMenu,
@@ -28,18 +27,22 @@ import {
     AiFillBell,
 } from "react-icons/ai";
 import { BsChatFill } from "react-icons/bs";
-import { MdStorm } from 'react-icons/md'
-import { RiStethoscopeFill, RiUserHeartFill, RiLogoutCircleFill, RiUserFollowFill } from 'react-icons/ri'
-import { Fragment } from 'react'
-import { useHistory } from 'react-router-dom'
-import { useAuthUser } from '../../context'
+import { MdStorm } from "react-icons/md";
+import {
+    RiStethoscopeFill,
+    RiUserHeartFill,
+    RiLogoutCircleFill,
+    RiUserFollowFill,
+} from "react-icons/ri";
+import { Fragment } from "react";
+import { useHistory } from "react-router-dom";
+import { useAuthUser } from "../../context";
 
 export default function Header() {
     const bg = useColorModeValue("white", "gray.800");
     const mobileNav = useDisclosure();
-    const history = useHistory()
-    const { logout, authUser: user } = useAuthUser()
-
+    const history = useHistory();
+    const { logout, authUser: user } = useAuthUser();
 
     return (
         <Fragment>
@@ -85,30 +88,35 @@ export default function Header() {
                                 <Button w="full" variant="ghost" leftIcon={<AiFillHome />}>
                                     Dashboard
                                 </Button>
+                                {!user?.isDoctor && (
+                                    <Button
+                                        w="full"
+                                        variant="ghost"
+                                        leftIcon={<BsChatFill />}
+                                        onClick={() => history.push("/consultations")}
+                                    >
+                                        Consultations
+                                    </Button>
+                                )}
                                 <Button
                                     w="full"
                                     variant="ghost"
-                                    leftIcon={<BsChatFill />}
-                                    onClick={() => history.push('/consultations')}
+                                    leftIcon={
+                                        user?.isDoctor ? (
+                                            <RiStethoscopeFill />
+                                        ) : (
+                                            <RiUserFollowFill />
+                                        )
+                                    }
+                                    onClick={() =>
+                                        history.push(user?.isDoctor ? "/patients" : "/doctors")
+                                    }
                                 >
-                                    Chats
-                                </Button>
-                                <Button
-                                    w="full"
-                                    variant="ghost"
-                                    leftIcon={user?.isDoctor ? <RiStethoscopeFill /> : <RiUserFollowFill />}
-                                    onClick={() => history.push(user?.isDoctor ? '/patients' : '/doctors')}
-                                >
-                                    {user?.isDoctor ? 'Patients' : 'Doctors'}
+                                    {user?.isDoctor ? "Patients" : "Doctors"}
                                 </Button>
                             </VStack>
                         </Box>
-                        <chakra.a
-                            href="/"
-                            title="MedX"
-                            display="flex"
-                            alignItems="center"
-                        >
+                        <chakra.a href="/" title="MedX" display="flex" alignItems="center">
                             <Icon as={MdStorm} w={8} h={8} />
                             <VisuallyHidden>MedX</VisuallyHidden>
                         </chakra.a>
@@ -117,21 +125,27 @@ export default function Header() {
                             <Button variant="ghost" leftIcon={<AiFillHome />} size="sm">
                                 Dashboard
                             </Button>
-                            <Button
-                                variant="ghost"
-                                leftIcon={<BsChatFill />}
-                                size="sm"
-                                onClick={() => history.push('/consultations')}
-                            >
-                                Chats
-                            </Button>
+                            {!user?.isDoctor && (
+                                <Button
+                                    w="full"
+                                    variant="ghost"
+                                    leftIcon={<BsChatFill />}
+                                    onClick={() => history.push("/consultations")}
+                                >
+                                    Consultations
+                                </Button>
+                            )}
                             <Button
                                 w="full"
                                 variant="ghost"
-                                leftIcon={user?.isDoctor ? <RiStethoscopeFill /> : <RiUserFollowFill />}
-                                onClick={() => history.push(user?.isDoctor ? '/patients' : '/doctors')}
+                                leftIcon={
+                                    user?.isDoctor ? <RiStethoscopeFill /> : <RiUserFollowFill />
+                                }
+                                onClick={() =>
+                                    history.push(user?.isDoctor ? "/patients" : "/doctors")
+                                }
                             >
-                                {user?.isDoctor ? 'Patients' : 'Doctors'}
+                                {user?.isDoctor ? "Patients" : "Doctors"}
                             </Button>
                         </HStack>
                     </HStack>
@@ -166,10 +180,16 @@ export default function Header() {
                                 src={user?.image}
                             />
                             <MenuList>
-                                <MenuItem icon={<RiUserHeartFill />} onClick={() => history.push('/myprofile')}>
+                                <MenuItem
+                                    icon={<RiUserHeartFill />}
+                                    onClick={() => history.push("/myprofile")}
+                                >
                                     My Profile
                                 </MenuItem>
-                                <MenuItem icon={<RiLogoutCircleFill />} onClick={() => logout()}>
+                                <MenuItem
+                                    icon={<RiLogoutCircleFill />}
+                                    onClick={() => logout()}
+                                >
                                     Logout
                                 </MenuItem>
                             </MenuList>
